@@ -1,0 +1,32 @@
+<header  th:fragment="header" th:remove="tag">
+    <header id="header">
+        <h1>HealthBlog</h1>
+        <nav id="nav">
+            <div class="fonts-display clearfix">
+                <p class="text-left alpha">
+                    <a th:href="@{/}">Home</a>
+                </p>
+                <p class="text-left">
+                    <a th:href="@{/about}">About</a>
+                </p>
+                <p class="text-left">
+                    <a href="/feed">Work</a>
+                </p>
+                <p class="logo mq-wide-i-block mq-mid-i-block mq-small-i-block">
+                    <a th:href="@{/}" title="HealthBlog">
+                        <img class="logo-img" th:src="@{/img/logo.png}" alt="HealthBlog"/>
+                    </a>
+                </p>
+                <p class="text-right">
+                    <a href="/contact">Contact</a>
+                </p>
+                <p class="text-right">
+                    <a href="/register">Register</a>
+                </p>
+                <p class="text-right omega">
+                    <a href="/login">Login</a>
+                </p>
+            </div>
+        </nav>
+    </header>
+</header>
