@@ -1,4 +1,4 @@
-<main th:remove="tag">
+<!--<main th:remove="tag">
     <div class="container body-content">
         <div class="row">
             <div>
@@ -23,6 +23,22 @@
                         </footer>
                     </article>
                 </div>
+            </th:block>
+        </div>
+    </div>
+</main>-->
+
+<main th:remove="tag">
+    <div class="main-container">
+        <div class="article">
+            <th:block th:each="article : ${articles}">
+                <header>
+                    <h2 th:text="${article.title}"></h2>
+                </header>
+
+                <p th:text="${article.summary}"></p>
+
+                <span th:text="${article.author.fullName}"></span>
             </th:block>
         </div>
     </div>

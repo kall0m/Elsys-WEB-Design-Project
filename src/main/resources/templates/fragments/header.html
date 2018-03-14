@@ -1,32 +1,55 @@
-<header  th:fragment="header" th:remove="tag">
-    <header id="header">
-        <h1>HealthBlog</h1>
-        <nav id="nav">
+<header id="header" th:fragment="header" th:remove="tag">
+    <div id="nav-holder">
+        <nav>
             <div class="fonts-display clearfix">
-                <p class="text-left alpha">
-                    <a th:href="@{/}">Home</a>
-                </p>
-                <p class="text-left">
-                    <a th:href="@{/about}">About</a>
-                </p>
-                <p class="text-left">
-                    <a href="/feed">Work</a>
-                </p>
-                <p class="logo mq-wide-i-block mq-mid-i-block mq-small-i-block">
+                <div class="dropdown">
+                    <p class="text-left alpha">
+                        <a th:href="@{/fitness}">Fitness</a>
+                    </p>
+                    <div class="dropdown-content alpha">
+                        <a href="#">Challenges</a>
+                        <a href="#">Exercises</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <p class="text-left">
+                        <a th:href="@{/food}">Food</a>
+                    </p>
+                    <div class="dropdown-content">
+                        <a href="#">Healthy</a>
+                        <a href="#">Desserts</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <p class="text-left">
+                        <a th:href="@{/lifestyle}">Lifestyle</a>
+                    </p>
+                    <div class="dropdown-content">
+                        <a href="#">Wear it better</a>
+                        <a href="#">Motivation</a>
+                    </div>
+                </div>
+                <p class="logo-holder">
                     <a th:href="@{/}" title="HealthBlog">
-                        <img class="logo-img" th:src="@{/img/logo.png}" alt="HealthBlog"/>
+                        <img th:src="@{/img/logo.png}" alt="HealthBlog"/>
                     </a>
                 </p>
                 <p class="text-right">
-                    <a href="/contact">Contact</a>
+                    <a th:href="@{/}">Home</a>
                 </p>
-                <p class="text-right">
-                    <a href="/register">Register</a>
-                </p>
+                <div class="dropdown">
+                    <p class="text-right">
+                        <a th:href="@{/about}">About Me</a>
+                    </p>
+                    <div class="dropdown-content">
+                        <a href="#">My Transformation</a>
+                        <a href="#">Me, Myself &amp; I</a>
+                    </div>
+                </div>
                 <p class="text-right omega">
-                    <a href="/login">Login</a>
+                    <a th:href="@{/contact}">Contact Me</a>
                 </p>
             </div>
         </nav>
-    </header>
+    </div>
 </header>
