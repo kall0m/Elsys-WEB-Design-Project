@@ -3,7 +3,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 20px;
   text-align: center;
-  overflow: hidden;
 }
 
 #page-border {
@@ -116,25 +115,32 @@ nav a:hover {
 
 .main-container {
   padding: 20px;
-  margin-left: 15%;
-  margin-right: 15%;
-  height: 900px;
-  border-style: solid;
-  border-width: 5px;
+  margin: 5% 15%;
 }
 
-.article {
-  padding: 50px 0;
+.inner {
   border-style: solid;
   border-width: 2px;
   border-color: #12130F;
 }
 
+.article {
+  padding: 50px 0;
+  border: 2px solid transparent;
+  margin-bottom: 5px;
+}
+
+.article:hover {
+  border: 2px solid #12130F;
+}
+
+.article:hover .main-container {
+  padding: 18px;
+}
+
 .article-title {
 
 }
-
-
 
 #content {
   display: block;
@@ -151,7 +157,8 @@ footer {
   bottom: 0;
   width: 100%;
   display: block;
-  border-top: 1px solid #6a6a65;
+  background: #12130F;
+  color: #8F8073;
 }
 
 /* clearfix */
