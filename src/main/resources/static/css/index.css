@@ -1,13 +1,21 @@
 .article-holder {
-    opacity: 1;
-    pointer-events: initial;
     margin-bottom: 30px;
-    width: 50%;
     float: left;
     position: relative;
-    min-height: 1px;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+@media (min-width: 768px) {
+    .article-holder {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1414px) {
+    .article-holder {
+        width: 33.33333333%;
+    }
 }
 
 .article-holder > a {
@@ -35,6 +43,17 @@
 .article-body {
     margin-bottom: 0;
     padding: 1.625em;
+    background: #fff;
+}
+
+.article-body h6 {
+    margin-bottom: 1.3em;
+    color: #767676;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    font-size: 0.625em;
+    line-height: 2.6em;
 }
 
 .article-title {
@@ -42,6 +61,12 @@
     margin-bottom: 1.625em;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.article-title h5 {
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.625em;
 }
 
 .article:hover .main-container {

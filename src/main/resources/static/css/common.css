@@ -8,7 +8,20 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 20px;
-  background: #F5F5F5;
+  background: #f8f8f8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', 'Helvetica', 'Arial', sans-serif;
+  color: #343434;
+  font-weight: 600;
+  font-variant-ligatures: common-ligatures;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 .wrapper {
@@ -23,8 +36,29 @@ body {
   border-top: 2px solid #8F8073;
 }
 
+@media (min-width: 768px) {
+  .main-container {
+    width: 750px;
+  }
+}
+@media (min-width: 1122px) {
+  .main-container {
+    width: 1020px;
+  }
+}
+@media (min-width: 1414px) {
+  .main-container {
+    width: 1312px;
+  }
+}
+@media (min-width: 1602px) {
+  .main-container {
+    width: 1500px;
+  }
+}
+
 .left-content {
-  width: 75%;
+  width: 80%;
   float: left;
   position: relative;
   border-right: 2px solid #8F8073;
@@ -32,7 +66,7 @@ body {
 }
 
 .sidebar {
-  width: 25%;
+  width: 20%;
   float: left;
   position: relative;
   padding: 30px 0;

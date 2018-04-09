@@ -1,15 +1,15 @@
 <main th:remove="tag">
     <div class="main-container">
         <div class="left-content">
-            <th:block th:each="article : ${articles}">
-                <div class="article-holder">
+
+                <div th:each="article : ${articles}" class="article-holder">
                     <a th:href="@{/article/{id}(id=${article.id})}">
                         <div class="article">
                             <div class="article-image">
                                 <img alt="Pic" th:src="${article.image}"/>
                             </div>
                             <div class="article-body">
-                                <h6>Category</h6>
+                                <h6 th:text="${article.category}"></h6>
                                 <div class="article-title">
                                     <h5 th:text="${article.title}"></h5>
                                 </div>
@@ -17,7 +17,7 @@
                         </div>
                     </a>
                 </div>
-            </th:block>
+
         </div>
 
         <div class="sidebar text-center">

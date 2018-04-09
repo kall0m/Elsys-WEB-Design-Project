@@ -6,7 +6,118 @@
 #nav {
     background: #12130F;
     overflow: hidden;
-    padding: 50px 0;
+}
+
+@media screen and (max-width: 898px) {
+    #nav p, #nav p.alpha, #nav p.omega {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 898px) {
+    #nav p.text-left, #nav p.text-right {
+        text-align: center!important;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    #nav p {
+        font-size: 19px;
+    }
+}
+
+@media screen and (max-width: 898px) {
+    #nav p {
+        width: auto;
+        font-size: 20px;
+        word-spacing: 1px;
+        line-height: 32px;
+    }
+}
+
+@media screen and (max-width: 898px) {
+    #nav a {
+        padding: 0 10px;
+        border: 0;
+    }
+}
+
+@media screen and (max-width: 1016px) {
+    .nav-link {
+        width: 87px;
+    }
+}
+
+@media screen and (min-width: 1180px) {
+    .nav-link {
+        width: 108px;
+    }
+}
+
+@media screen and (min-width: 1122px) {
+    #nav {
+        padding: 30px 0;
+    }
+
+    .nav-link {
+        width: 108px;
+    }
+
+    .logo-space {
+        width: 300px;
+    }
+
+    .logo-holder img {
+        width: 300px;
+    }
+
+    .logo-holder {
+        top: 220px;
+    }
+}
+
+@media screen and (min-width: 1414px) {
+    #nav {
+        padding: 40px 0;
+    }
+
+    .nav-link {
+        width: 140px;
+    }
+
+    .logo-space {
+        width: 400px;
+    }
+
+    .logo-holder img {
+        width: 400px;
+    }
+
+    .logo-holder {
+        top: 170px;
+    }
+}
+
+@media screen and (min-width: 1602px) {
+    #nav {
+        padding: 50px 0;
+    }
+
+    .nav-link {
+        width: 160px;
+    }
+
+    .logo-space {
+        width: 450px;
+    }
+
+    .logo-holder img {
+        width: 450px;
+    }
+
+    .logo-holder {
+        top: 150px;
+    }
 }
 
 .cover-image {
@@ -20,11 +131,10 @@
     margin-right: auto;
     left: 0;
     right: 0;
-    top: 150px;
 }
 
 .logo-space {
-    width: 450px;
+    /*width: 450px;*/
 }
 
 nav p {
@@ -34,7 +144,7 @@ nav p {
 }
 
 .nav-link {
-    width: 160px;
+    /*width: 160px;*/
     position: relative;
     z-index: 10;
 }
