@@ -1,5 +1,5 @@
 function checker(){
-    let values = [];
+    var values = [];
 
     $('input').each(function(){
         values.push($(this).val());
@@ -9,9 +9,9 @@ function checker(){
         values.push($(this).val());
     });
 
-    let sqlSymbols = ["--", ";", "`", "'", "DROP DATABASE", "DROP TABLE"];
+    var sqlSymbols = ["--", ";", "`", "'", "DROP DATABASE", "DROP TABLE"];
 
-    let flag = true;
+    var flag = true;
 
     values.map(function (x){
         sqlSymbols.map(function(y){
@@ -29,13 +29,15 @@ function checker(){
 }
 
 function initMap() {
-    var uluru = {lat: -25.363, lng: 131.044};
+    var kostinbrod = {lat: 42.818459, lng: 23.211960};
+
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: uluru
+        zoom: 10,
+        center: kostinbrod
     });
+
     var marker = new google.maps.Marker({
-        position: uluru,
+        position: kostinbrod,
         map: map
     });
 }
