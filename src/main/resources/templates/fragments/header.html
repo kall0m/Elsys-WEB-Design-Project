@@ -1,53 +1,57 @@
-<header id="header" th:fragment="header" th:remove="tag">
+<header th:fragment="header" th:remove="tag">
+    <div class="cover-image">
+
+    </div>
+
     <div id="nav-holder">
         <nav>
             <div class="fonts-display clearfix">
                 <div class="dropdown">
                     <p class="text-left alpha">
-                        <a th:href="@{/fitness}">Fitness</a>
+                        <a class="underline" th:href="@{/fitness}">Fitness</a>
                     </p>
                     <div class="dropdown-content alpha">
-                        <a th:href="@{/fitness/challenges}">Challenges</a>
-                        <a th:href="@{/fitness/exercises}">Exercises</a>
+                        <a class="underline" th:href="@{/fitness/challenges}">Challenges</a>
+                        <a class="underline" th:href="@{/fitness/exercises}">Exercises</a>
                     </div>
                 </div>
                 <div class="dropdown">
                     <p class="text-left">
-                        <a th:href="@{/food}">Food</a>
+                        <a class="underline" th:href="@{/food}">Food</a>
                     </p>
                     <div class="dropdown-content">
-                        <a th:href="@{/food/healthy}">Healthy</a>
-                        <a th:href="@{/food/desserts}">Desserts</a>
+                        <a class="underline" th:href="@{/food/healthy}">Healthy</a>
+                        <a class="underline" th:href="@{/food/desserts}">Desserts</a>
                     </div>
                 </div>
                 <div class="dropdown">
                     <p class="text-left">
-                        <a th:href="@{/lifestyle}">Lifestyle</a>
+                        <a class="underline" th:href="@{/lifestyle}">Lifestyle</a>
                     </p>
                     <div class="dropdown-content">
-                        <a th:href="@{/lifestyle/wear-it-better}">Wear it better</a>
-                        <a th:href="@{/lifestyle/motivation}">Motivation</a>
+                        <a class="underline" th:href="@{/lifestyle/wear-it-better}">Wear it better</a>
+                        <a class="underline" th:href="@{/lifestyle/motivation}">Motivation</a>
                     </div>
                 </div>
                 <p class="logo-holder">
                     <a th:href="@{/}" title="HealthBlog">
-                        <img th:src="@{/img/logo.png}" alt="HealthBlog"/>
+                        <img th:src="@{/img/logo-br-2.png}" alt="HealthBlog"/>
                     </a>
                 </p>
                 <p class="text-right">
-                    <a th:href="@{/}">Home</a>
+                    <a class="underline" th:href="@{/}">Home</a>
                 </p>
                 <div class="dropdown">
                     <p class="text-right">
-                        <a th:href="@{/about}">About Me</a>
+                        <a class="underline" th:href="@{/about}">About Me</a>
                     </p>
                     <div class="dropdown-content">
-                        <a th:href="@{/about/my-transformation}">My Transformation</a>
-                        <a th:href="@{/about/me-myself-and-i}">Me, Myself &amp; I</a>
+                        <a class="underline" th:href="@{/about/my-transformation}">My Transformation</a>
+                        <a class="underline" th:href="@{/about/me-myself-and-i}">Me, Myself &amp; I</a>
                     </div>
                 </div>
                 <p class="text-right omega">
-                    <a th:href="@{/contact}">Contact Me</a>
+                    <a class="underline" th:href="@{/contact}">Contact Me</a>
                 </p>
             </div>
         </nav>
