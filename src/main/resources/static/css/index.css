@@ -1,0 +1,74 @@
+.article-holder {
+    opacity: 1;
+    pointer-events: initial;
+    margin-bottom: 30px;
+    width: 50%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.article-holder > a {
+    display: block;
+}
+
+.article {
+    margin-bottom: 30px;
+}
+
+.article:hover {
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.05);
+}
+
+.article-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.article-image > img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.article-body {
+    margin-bottom: 0;
+    padding: 1.625em;
+}
+
+.article-title {
+    height: 4.875em;
+    margin-bottom: 1.625em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.article:hover .main-container {
+    padding: 18px;
+}
+
+.quote-of-the-day {
+    padding: 0 15px;
+}
+
+.categories {
+
+}
+
+.categories-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.social-media-holder {
+
+}
+
+.social-list li {
+    display: inline-block;
+}
+.social-list li:not(:last-child) {
+    margin-right: 1.625em;
+}

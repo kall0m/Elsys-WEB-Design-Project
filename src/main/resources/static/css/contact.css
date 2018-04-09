@@ -1,0 +1,41 @@
+.contact-form-holder {
+    width: 50%;
+    border: none;
+    padding: 30px 120px;
+}
+
+.contact-form {
+    background: #8F8073;
+    padding: 30px 20px;
+    margin-top: 30px;
+}
+
+.contact-form input, textarea {
+    text-align: left;
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.contact-form textarea {
+    height: 100px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.contact-sidebar {
+    width: 50%;
+}
+
+.contact-phone {
+
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+}
