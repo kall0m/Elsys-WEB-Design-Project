@@ -1,3 +1,55 @@
 <main th:remove="tag">
-    <h1>Lifestyle</h1>
+    <div class="main-container">
+        <div class="left-content">
+            <div th:each="article : ${articles}" class="article-holder">
+                <a th:href="@{/article/{id}(id=${article.id})}">
+                    <div class="article">
+                        <div class="article-image">
+                            <img alt="Pic" th:src="${article.image}"/>
+                        </div>
+                        <div class="article-body">
+                            <h6 th:text="${article.category}"></h6>
+                            <div class="article-title">
+                                <h5 th:text="${article.title}"></h5>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="sidebar text-center">
+            <div class="utility search-field">
+                <input type="text" placeholder="Search by tag..."/>
+            </div>
+
+            <div class="utility quote-of-the-day fonts-display">
+                <h2>Quote of the day</h2>
+                <p style="font-style: italic;">"The human body is the best picture of the human soul."</p>
+                <p>- Ludwig Wittgenstein</p>
+            </div>
+
+            <div class="utility categories fonts-display">
+                <ul class="categories-list">
+                    <li>Fitness</li>
+                    <li>Food</li>
+                    <li>Lifestyle</li>
+                </ul>
+            </div>
+
+            <div class="utility social-media-holder fonts-display">
+                <ul class="social-list">
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/kaloyan.madjunov"><img th:src="@{img/facebook.png}"/></a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.instagram.com/kaloyanmad/"><img th:src="@{img/instagram.png}"/></a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.pinterest.com/apple_banana/"><img th:src="@{img/pinterest.png}"/></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </main>
