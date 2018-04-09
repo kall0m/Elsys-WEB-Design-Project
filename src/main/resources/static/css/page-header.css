@@ -132,7 +132,7 @@
 }
 
 .underline:hover {
-    color: #8FCB9B ;
+    color: #8FCB9B !important;
     border-bottom: 1px solid;
 }
 
