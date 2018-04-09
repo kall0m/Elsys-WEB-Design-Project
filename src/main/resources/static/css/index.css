@@ -6,13 +6,19 @@
     padding-right: 15px;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
     .article-holder {
         width: 50%;
     }
 }
 
-@media (min-width: 1414px) {
+@media screen and (max-width: 768px) {
+    .article-holder {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1415px) {
     .article-holder {
         width: 33.33333333%;
     }

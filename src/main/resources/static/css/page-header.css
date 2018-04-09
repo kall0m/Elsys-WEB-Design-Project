@@ -1,26 +1,10 @@
-.page-header {
-    margin-bottom: 50px;
-    display: block;
-}
-
-#nav {
-    background: #12130F;
-    overflow: hidden;
-}
-
-@media screen and (max-width: 898px) {
-    #nav p, #nav p.alpha, #nav p.omega {
-        margin: 0;
-    }
-}
-
 @media screen and (max-width: 1414px) {
     #nav {
         padding: 30px 0;
     }
 
     .nav-content {
-        width: 40%;
+        width: 450px;
         margin: 0 auto;
     }
 
@@ -32,12 +16,8 @@
         display: none !important;
     }
 
-    .logo-holder img {
-        width: 400px;
-    }
-
     .logo-holder {
-        top: 100px;
+        top: 4% !important;
     }
 
     #nav p {
@@ -54,7 +34,7 @@
     }
 }
 
-@media screen and (min-width: 1414px) {
+@media screen and (min-width: 1415px) {
     #nav {
         padding: 40px 0;
     }
@@ -63,16 +43,8 @@
         width: 140px;
     }
 
-    .logo-space {
-        width: 400px;
-    }
-
-    .logo-holder img {
-        width: 400px;
-    }
-
     .logo-holder {
-        top: 170px;
+        top: 10% !important;
     }
 }
 
@@ -85,22 +57,25 @@
         width: 160px;
     }
 
-    .logo-space {
-        width: 450px;
-    }
-
-    .logo-holder img {
-        width: 450px;
-    }
-
     .logo-holder {
-        top: 150px;
+        top: 12% !important;
     }
 }
 
-.cover-image {
-    background-image: url("/img/background2.jpg");
-    height: 350px;
+.page-header {
+    margin-bottom: 50px;
+    display: block;
+}
+
+#nav {
+    background: #12130F;
+    overflow: hidden;
+}
+
+#cover-image {
+    display: block;
+    width: 100% !important;
+    height: auto;
 }
 
 .logo-holder {
@@ -111,8 +86,13 @@
     right: 0;
 }
 
+#logo {
+    width: 25%;
+    height: auto;
+}
+
 .logo-space {
-    /*width: 450px;*/
+    width: 25%;
 }
 
 #nav p {

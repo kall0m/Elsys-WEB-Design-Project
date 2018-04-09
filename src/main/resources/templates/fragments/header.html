@@ -1,13 +1,10 @@
 <header th:fragment="header" th:remove="tag">
-    <div class="cover-image">
-        <div class="logo-holder">
-            <a th:href="@{/}" title="HealthBlog">
-                <img th:src="@{/img/logo-4.png}" alt="HealthBlog"/>
-            </a>
-        </div>
-    </div>
-
-    <nav id="nav">
+    <img id="cover-image" th:src="@{/img/background2.jpeg}"/>
+    <div class="logo-holder">
+        <a th:href="@{/}" title="HealthBlog">
+            <img id="logo" th:src="@{/img/logo-4.png}" alt="HealthBlog"/>
+        </a>
+    </div><nav id="nav">
         <div class="nav-content fonts-display clearfix">
             <!--<div class="dropdown">-->
                 <p class="nav-link text-left alpha">

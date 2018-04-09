@@ -36,21 +36,18 @@ a {
   border-top: 2px solid #8F8073;
 }
 
-@media (min-width: 768px) {
-  .main-container {
-    width: 750px;
-  }
-}
 @media (min-width: 1122px) {
   .main-container {
     width: 1020px;
   }
 }
-@media (min-width: 1414px) {
+
+@media (min-width: 1415px) {
   .main-container {
-    width: 1312px;
+    width: 1313px;
   }
 }
+
 @media (min-width: 1602px) {
   .main-container {
     width: 1500px;
