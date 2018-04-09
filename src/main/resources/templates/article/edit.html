@@ -20,6 +20,20 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_image">Image</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="article_image" placeholder="Article Image Source" name="image" th:value="${article.image}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_content">Make cool</label>
+                        <div class="col-sm-6">
+                            <input type="radio" name="cool" th:value="${article.cool}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
                             <a class="btn btn-default" th:href="@{/article/{id}(id = ${article.id})}">Cancel</a>
                             <input type="submit" class="btn btn-success" value="Edit"/>
