@@ -5,11 +5,13 @@
 
 <body>
 
-<header th:include="fragments/header"></header>
+<div class="wrapper">
+    <header class="page-header text-center" th:include="fragments/header"></header>
 
-<main th:include="${view}"></main>
+    <main th:include="${view}"></main>
+</div>
 
-<footer th:include="fragments/footer"></footer>
+<footer class="page-footer text-center" th:include="fragments/footer"></footer>
 
 <span th:include="fragments/scripts-bundle"></span>
 
