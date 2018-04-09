@@ -42,13 +42,17 @@ public class ArticleController {
 
         User userEntity = this.userRepository.findByEmail(user.getUsername());
 
-        Article articleEntity = new Article(
+        Article article = new Article(
+                articleBindingModel.getCategory(),
                 articleBindingModel.getTitle(),
                 articleBindingModel.getContent(),
                 userEntity
         );
 
-        this.articleRepository.saveAndFlush(articleEntity);
+        article.setCool(articleBindingModel.isCool());
+        article.setImage(articleBindingModel.getImage());
+
+        this.articleRepository.saveAndFlush(article);
 
         return "redirect:/";
     }
@@ -85,8 +89,10 @@ public class ArticleController {
 
         if (article == null) return "redirect:/";
 
+        article.setCategory(articleBindingModel.getCategory());
         article.setTitle(articleBindingModel.getTitle());
         article.setContent(articleBindingModel.getContent());
+        article.setImage(articleBindingModel.getImage());
 
         this.articleRepository.saveAndFlush(article);
 

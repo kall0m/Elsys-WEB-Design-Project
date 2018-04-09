@@ -8,6 +8,7 @@ import healthblog.models.Article;
 import healthblog.repositories.ArticleRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -21,9 +22,11 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model) {
         List<Article> articles = this.articleRepository.findAll();
+        List<Article> coolStuff = this.articleRepository.findAll().stream().filter(a -> a.isCool()).collect(Collectors.toList());
 
-        model.addAttribute("view", "home/index");
         model.addAttribute("articles", articles);
+        model.addAttribute("coolStuff", coolStuff);
+        model.addAttribute("view", "home/index");
 
         return "base-layout";
     }
