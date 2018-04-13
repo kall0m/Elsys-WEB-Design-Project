@@ -21,7 +21,6 @@
 .article-body {
     margin-bottom: 0;
     padding: 1.625em;
-    background: #fff;
 }
 
 .article-info {
@@ -40,6 +39,7 @@
 }
 
 .article-image {
+    padding: 1.625em;
     position: relative;
     overflow: hidden;
 }
