@@ -6,13 +6,15 @@
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
   line-height: 20px;
   background: #f8f8f8;
+  font-family: "freightsans_regular", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', 'Helvetica', 'Arial', sans-serif;
   color: #343434;
   font-weight: 600;
   font-variant-ligatures: common-ligatures;
@@ -23,6 +25,16 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"] {
+  padding: 4px 12px 6px;
+}
+
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"], textarea {
+  color: #000;
+  border: 1px solid #000;
+  background: none;
 }
 
 .wrapper {
@@ -65,19 +77,14 @@ a {
 
 .sidebar {
   width: 27%;
-  float: left;
+  float: right;
   position: relative;
   padding: 30px 0;
 }
 
-.sidebar .utility {
-  margin-left: 10px;
-  margin-right: 10px;
-  border: 2px solid #8F8073;
-}
-
-.sidebar .utility:not(:last-child) {
-  margin-bottom: 1.625em;
+.sidebar .widget {
+  border-top: 1px solid;
+  padding: 1.2em 1em;
 }
 
 .sidebar-content {

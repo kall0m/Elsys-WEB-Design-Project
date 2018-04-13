@@ -19,7 +19,7 @@
 
                                     <span> | </span>
 
-                                    <span th:text="${article.date}"></span>
+                                    <span th:text="${#dates.format(article.date, 'dd.MM.yyyy')}"></span>
                                 </div>
                             </div>
 
@@ -33,25 +33,11 @@
         </div>
 
         <div class="sidebar text-center">
-            <div class="utility search-field">
-                <input type="text" placeholder="Search by tag..."/>
+            <div class="widget search-field">
+                <input type="search" placeholder="Search..."/>
             </div>
 
-            <div class="utility quote-of-the-day fonts-display">
-                <h2>Quote of the day</h2>
-                <p style="font-style: italic;">"The human body is the best picture of the human soul."</p>
-                <p>- Ludwig Wittgenstein</p>
-            </div>
-
-            <div class="utility categories fonts-display">
-                <ul class="categories-list">
-                    <li>Fitness</li>
-                    <li>Food</li>
-                    <li>Lifestyle</li>
-                </ul>
-            </div>
-
-            <div class="utility social-media-holder fonts-display">
+            <div class="widget social-media-holder fonts-display">
                 <ul class="social-list">
                     <li>
                         <a target="_blank" href="https://www.facebook.com/kaloyan.madjunov"><img th:src="@{img/facebook.png}"/></a>
@@ -62,6 +48,20 @@
                     <li>
                         <a target="_blank" href="https://www.pinterest.com/apple_banana/"><img th:src="@{img/pinterest.png}"/></a>
                     </li>
+                </ul>
+            </div>
+
+            <div class="widget quote-of-the-day fonts-display">
+                <h2>Quote of the day</h2>
+                <p style="font-style: italic;">"The human body is the best picture of the human soul."</p>
+                <p>- Ludwig Wittgenstein</p>
+            </div>
+
+            <div class="widget categories fonts-display">
+                <ul class="categories-list">
+                    <a th:href="@{/fintess}"><li>Fitness</li></a>
+                    <a th:href="@{/food}"><li>Food</li></a>
+                    <a th:href="@{/lifestyle}"><li>Lifestyle</li></a>
                 </ul>
             </div>
         </div>
