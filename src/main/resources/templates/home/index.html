@@ -1,20 +1,34 @@
 <main th:remove="tag">
     <div class="main-container">
         <div class="primary">
-            <div th:each="article : ${articles}" class="article-holder">
-                <a th:href="@{/article/{id}(id=${article.id})}">
-                    <div class="article">
-                        <div class="article-image">
-                            <img alt="Pic" th:src="${article.image}"/>
-                        </div>
-                        <div class="article-body">
-                            <h6 th:text="${article.category}"></h6>
-                            <div class="article-title">
-                                <h5 th:text="${article.title}"></h5>
+            <div class="articles-container">
+                <div th:each="article : ${articles}" class="article-holder">
+                    <a th:href="@{/article/{id}(id=${article.id})}">
+                        <div class="article">
+                            <div class="article-body text-center">
+                                <h4 class="article-info">
+                                    <a th:href="@{/${article.category}}" th:text="${article.category}"></a>
+                                </h4>
+
+                                <h1 class="article-title" th:text="${article.title}"></h1>
+
+                                <div class="article-info">
+                                    <span>by
+                                        <span th:text="${article.author.fullName}"></span>
+                                    </span>
+
+                                    <span> | </span>
+
+                                    <span>DATE</span>
+                                </div>
+                            </div>
+
+                            <div class="article-image">
+                                <img alt="Pic" th:src="${article.image}"/>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
 
