@@ -24,7 +24,7 @@ public class HomeController {
         List<Article> articles = this.articleRepository.findAll();
 
         model.addAttribute("articles", articles);
-        model.addAttribute("view", "home/index");
+        model.addAttribute("view", "home/articles");
 
         return "base-layout";
     }
@@ -33,8 +33,8 @@ public class HomeController {
     public String fitness(Model model) {
         List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().toLowerCase().equals("fitness")).collect(Collectors.toList());
 
-        model.addAttribute("view", "home/fitness");
         model.addAttribute("articles", articles);
+        model.addAttribute("view", "home/articles");
 
         return "base-layout";
     }
@@ -57,8 +57,8 @@ public class HomeController {
     public String food(Model model) {
         List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().toLowerCase().equals("food")).collect(Collectors.toList());
 
-        model.addAttribute("view", "home/food");
         model.addAttribute("articles", articles);
+        model.addAttribute("view", "home/articles");
 
         return "base-layout";
     }
@@ -81,8 +81,8 @@ public class HomeController {
     public String lifestyle(Model model) {
         List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().toLowerCase().equals("lifestyle")).collect(Collectors.toList());
 
-        model.addAttribute("view", "home/lifestyle");
         model.addAttribute("articles", articles);
+        model.addAttribute("view", "home/articles");
 
         return "base-layout";
     }
