@@ -42,8 +42,8 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
 }
 
 .main-container {
-  margin-right: auto;
-  margin-left: auto;
+  margin: 2.2em auto 5em;
+
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -62,24 +62,22 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
 
 @media (min-width: 1602px) {
   .main-container {
-    width: 1500px;
+    width: 1400px;
   }
 }
 
 .primary {
-  width: 69%;
   float: left;
+  width: 69%;
   position: relative;
   box-shadow: 1px 0px 0px 0px, 5px 0px 0px 0px #fff, 6px 0px 0px 0px;
   padding: 0 2em 0 0;
-  margin: 2.2em auto 5em;
 }
 
 .sidebar {
   width: 27%;
   float: right;
   position: relative;
-  padding: 30px 0;
 }
 
 .sidebar .widget {

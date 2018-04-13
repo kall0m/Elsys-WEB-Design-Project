@@ -1,6 +1,6 @@
 .contact-form-holder {
     width: 50%;
-    border: none;
+    float: left;
     padding: 30px 120px;
 }
 
@@ -29,6 +29,8 @@
 
 .contact-sidebar {
     width: 50%;
+    float: right;
+    padding: 30px 120px;
 }
 
 .contact-phone {
