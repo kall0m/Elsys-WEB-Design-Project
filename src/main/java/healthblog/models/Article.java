@@ -1,6 +1,7 @@
 package healthblog.models;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "articles")
@@ -15,18 +16,19 @@ public class Article {
 
     private User author;
 
-    private boolean cool;
-
     private String image;
+
+    private Date date = new Date();
 
     public Article() {
     }
 
-    public Article(String category, String title, String content, User author) {
+    public Article(String category, String title, String content, User author, Date date) {
         this.category = category;
         this.title = title;
         this.content = content;
         this.author = author;
+        this.date = date;
     }
 
     @Id
@@ -83,15 +85,6 @@ public class Article {
         return this.getContent().substring(0, endIndex) + "...";
     }
 
-    @Column(name = "isCool", nullable = true)
-    public boolean isCool() {
-        return cool;
-    }
-
-    public void setCool(boolean cool) {
-        this.cool = cool;
-    }
-
     @Column(name = "imageSource", nullable = true)
     public String getImage() {
         return image;
@@ -99,6 +92,15 @@ public class Article {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Column(columnDefinition = "DATETIME", nullable = false)
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
 

@@ -15,6 +15,8 @@ import healthblog.models.User;
 import healthblog.repositories.ArticleRepository;
 import healthblog.repositories.UserRepository;
 
+import java.util.Date;
+
 @Controller
 public class ArticleController {
     private final ArticleRepository articleRepository;
@@ -46,10 +48,10 @@ public class ArticleController {
                 articleBindingModel.getCategory(),
                 articleBindingModel.getTitle(),
                 articleBindingModel.getContent(),
-                userEntity
+                userEntity,
+                new Date()
         );
 
-        article.setCool(articleBindingModel.isCool());
         article.setImage(articleBindingModel.getImage());
 
         this.articleRepository.saveAndFlush(article);
