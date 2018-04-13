@@ -1,6 +1,6 @@
 <main th:remove="tag">
     <div class="main-container">
-        <div class="left-content">
+        <div class="primary">
             <div th:each="article : ${articles}" class="article-holder">
                 <a th:href="@{/article/{id}(id=${article.id})}">
                     <div class="article">
