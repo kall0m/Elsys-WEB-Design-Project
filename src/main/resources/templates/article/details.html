@@ -5,13 +5,13 @@
                 <div class="article-holder">
                     <div class="article">
                         <div class="article-body text-center">
-                            <h4 class="article-info">
+                            <h4 class="article-info fonts-display">
                                 <a th:href="@{/${article.category}}" th:text="${article.category}"></a>
                             </h4>
 
-                            <h1 class="article-title" th:text="${article.title}"></h1>
+                            <h1 class="article-title fonts-frijole" th:text="${article.title}"></h1>
 
-                            <div class="article-info">
+                            <div class="article-info fonts-display">
                                     <span>by
                                         <span th:text="${article.author.fullName}"></span>
                                     </span>
@@ -59,7 +59,7 @@
 
             <div class="widget categories fonts-display">
                 <ul class="categories-list">
-                    <a th:href="@{/fintess}"><li>Fitness</li></a>
+                    <a th:href="@{/fitness}"><li>Fitness</li></a>
                     <a th:href="@{/food}"><li>Food</li></a>
                     <a th:href="@{/lifestyle}"><li>Lifestyle</li></a>
                 </ul>

@@ -127,6 +127,31 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
   width: 100px;
 }
 
+.login-form {
+  border-radius: 25px;
+  background: #EAE6E5;
+  padding: 30px 20px;
+  margin-top: 30px;
+}
+
+.login-form input {
+  text-align: left;
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.login-buttons {
+  width: 50%;
+  margin: auto;
+}
+
 /* clearfix */
 
 .clearfix::after {
