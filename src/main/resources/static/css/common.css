@@ -1,17 +1,19 @@
 * {
-  -webkit-box-sizing: border-box; /*Search*/
+  -webkit-box-sizing: border-box; /*Search, also :before and :after*/
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  line-height: 20px;
-  background: #f8f8f8;
-  font-family: "freightsans_regular", sans-serif;
+  font-size: 100%;
+  word-spacing: 1px;
+  line-height: 26px;
+  font-family: "freightsans_regular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #6b6b6b;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,13 +39,23 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
   background: none;
 }
 
+.fonts-frijole {
+  font-family: 'Frijole', cursive;
+}
+
+.fonts-display {
+  font-family: "freightsans_regular", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
 .wrapper {
   margin: 5px;
 }
 
 .main-container {
   margin: 2.2em auto 5em;
-
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -85,17 +97,6 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
   padding: 1.2em 1em;
 }
 
-.sidebar-content {
-  margin-top: 30px;
-}
-
-.fonts-display {
-  font-family: "freightsans_regular", sans-serif;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
 .text-center {
   text-align: center;
 }
@@ -119,11 +120,13 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
 }
 
 /* clearfix */
-.clearfix:after {
+
+.clearfix::after {
   content: ".";
   display: block;
   clear: both;
   visibility: hidden;
   line-height: 0;
   height: 0;
+  font-size: 0;
 }

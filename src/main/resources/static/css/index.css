@@ -63,7 +63,7 @@
     padding: 0;
 }
 
-.categories-list a:not(:last-child) {
+.categories-list a > li:not(:last-child) {
     margin-bottom: 0.3em;
 }
 
