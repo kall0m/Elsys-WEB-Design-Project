@@ -1,7 +1,9 @@
 package healthblog.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "articles")
@@ -20,8 +22,9 @@ public class Article {
 
     private Date date = new Date();
 
-    public Article() {
-    }
+    private List<Tag> tags;
+
+    public Article() {   }
 
     public Article(String category, String title, String content, User author, Date date) {
         this.category = category;
@@ -29,6 +32,7 @@ public class Article {
         this.content = content;
         this.author = author;
         this.date = date;
+        this.tags = new ArrayList<>();
     }
 
     @Id
@@ -101,6 +105,50 @@ public class Article {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "articles_tags")
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Article article = (Article) o;
+
+        if (!id.equals(article.id)) return false;
+        if (!category.equals(article.category)) return false;
+        if (!title.equals(article.title)) return false;
+        if (!content.equals(article.content)) return false;
+        if (!author.equals(article.author)) return false;
+        if (!image.equals(article.image)) return false;
+        if (!date.equals(article.date)) return false;
+        return tags.equals(article.tags);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + category.hashCode();
+        result = 31 * result + title.hashCode();
+        result = 31 * result + content.hashCode();
+        result = 31 * result + author.hashCode();
+        result = 31 * result + image.hashCode();
+        result = 31 * result + date.hashCode();
+        result = 31 * result + tags.hashCode();
+        return result;
     }
 }
 

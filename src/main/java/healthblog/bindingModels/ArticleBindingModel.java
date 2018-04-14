@@ -12,9 +12,9 @@ public class ArticleBindingModel {
     @NotNull
     private String content;
 
-    private boolean cool;
-
     private String image;
+
+    private String tags;
 
     public String getCategory() {
         return category;
@@ -40,20 +40,20 @@ public class ArticleBindingModel {
         this.content = content;
     }
 
-    public boolean isCool() {
-        return cool;
-    }
-
-    public void setCool(boolean cool) {
-        this.cool = cool;
-    }
-
     public String getImage() {
         return image;
     }
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }
 

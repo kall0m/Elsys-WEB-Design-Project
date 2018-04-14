@@ -1,5 +1,7 @@
 package healthblog.controllers;
 
+import healthblog.models.Tag;
+import healthblog.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,13 +17,20 @@ import healthblog.models.User;
 import healthblog.repositories.ArticleRepository;
 import healthblog.repositories.UserRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ArticleController {
     private final ArticleRepository articleRepository;
 
     private final UserRepository userRepository;
+
+    @Autowired
+    private TagService tagService;
 
     @Autowired
     public ArticleController(ArticleRepository articleRepository, UserRepository userRepository) {
@@ -52,6 +61,20 @@ public class ArticleController {
                 new Date()
         );
 
+        if(!articleBindingModel.getTags().isEmpty()) {
+            for (String tagName : articleBindingModel.getTags().trim().split("\\s*,\\s*")) {
+                Tag tag = this.tagService.findTag(tagName);
+
+                if(tag == null) {
+                    tag = new Tag(tagName);
+
+                    this.tagService.saveTag(tag);
+                }
+
+                article.addTag(tag);
+            }
+        }
+
         article.setImage(articleBindingModel.getImage());
 
         this.articleRepository.saveAndFlush(article);
@@ -65,7 +88,33 @@ public class ArticleController {
 
         if (article == null) return "redirect:/";
 
+        List<Article> similar = new ArrayList<>();
+
+        List<Article> articles = this.articleRepository.findAll();
+
+        int count = 0;
+
+        for(Tag t : article.getTags()) {
+            for(Article a : articles) {
+                if(a.getTags().contains(t)) {
+                    if(!a.equals(article) && !similar.contains(a)) {
+                        similar.add(a);
+
+                        count++;
+
+                        if(count == 10) {
+                            break;
+                        }
+                    }
+                }
+            }
+            if(count == 10) {
+                break;
+            }
+        }
+
         model.addAttribute("article", article);
+        model.addAttribute("similarArticles", similar);
         model.addAttribute("view", "article/details");
 
         return "base-layout";
