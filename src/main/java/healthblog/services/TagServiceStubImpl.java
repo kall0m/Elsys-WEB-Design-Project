@@ -5,6 +5,8 @@ import healthblog.repositories.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TagServiceStubImpl implements TagService {
     private TagRepository tagRepository;
@@ -20,5 +22,9 @@ public class TagServiceStubImpl implements TagService {
 
     public void saveTag(Tag tag) {
         this.tagRepository.saveAndFlush(tag);
+    }
+
+    public List<Tag> getAllTags() {
+        return this.tagRepository.findAll();
     }
 }
