@@ -113,6 +113,14 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
   text-align: right;
 }
 
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
 .btn {
   border-radius: 10px;
   height: 30px;
