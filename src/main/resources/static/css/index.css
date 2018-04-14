@@ -49,6 +49,10 @@
     vertical-align: middle;
 }
 
+.article-details {
+    padding: 0;
+}
+
 .quote-of-the-day {
     padding: 0 15px;
 }

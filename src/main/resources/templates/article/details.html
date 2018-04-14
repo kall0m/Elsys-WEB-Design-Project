@@ -1,34 +1,34 @@
 <main th:remove="tag">
-    <div class="main-container">
+    <div class="main-container clearfix">
         <div class="primary">
-            <div class="articles-container">
-                <div class="article-holder">
-                    <div class="article">
-                        <div class="article-body text-center">
-                            <h4 class="article-info fonts-display">
-                                <a th:href="@{/${article.category}}" th:text="${article.category}"></a>
-                            </h4>
+            <div class="article-holder">
+                <div class="article-body text-center">
+                    <h4 class="article-info fonts-display">
+                        <a th:href="@{/${article.category}}" th:text="${article.category}"></a>
+                    </h4>
 
-                            <h1 class="article-title fonts-frijole" th:text="${article.title}"></h1>
+                    <h1 class="article-title fonts-frijole" th:text="${article.title}"></h1>
 
-                            <div class="article-info fonts-display">
+                    <div class="article-info fonts-display">
                                     <span>by
                                         <span th:text="${article.author.fullName}"></span>
                                     </span>
 
-                                <span> | </span>
+                        <span> | </span>
 
-                                <span th:text="${#dates.format(article.date, 'dd.MM.yyyy')}"></span>
-                            </div>
-                        </div>
-
-                        <div class="article-image">
-                            <img alt="Pic" th:src="${article.image}"/>
-                        </div>
-
-                        <p th:text="${article.content}"></p>
+                        <span th:text="${#dates.format(article.date, 'dd.MM.yyyy')}"></span>
                     </div>
                 </div>
+
+                <div class="article-image article-details">
+                    <img alt="Pic" th:src="${article.image}"/>
+                </div>
+
+                <p th:text="${article.content}"></p>
+            </div>
+
+            <div class="similar-articles">
+                
             </div>
         </div>
 
