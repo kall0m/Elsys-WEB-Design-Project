@@ -152,6 +152,35 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
   margin: auto;
 }
 
+/*rotating head*/
+
+.image-holder{
+  position: relative;
+  margin: 0 auto;
+  width: 260px;
+  height: 260px;
+}
+
+.head-image,.circle{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 260px;
+}
+
+.head-image{
+  z-index: 0;
+}
+
+.circle{
+  z-index: 2;
+}
+
+.front{
+  z-index: 1;
+}
+
 /* clearfix */
 
 .clearfix::after {

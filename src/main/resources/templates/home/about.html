@@ -10,6 +10,21 @@
             </div>
         </div>
 
+        <div class="rotating-head">
+            <div class="image-holder kaloyan">
+                <img class="circle" src="/img/circle.png"/>
+                <img class="head-image up" src="/img/up.jpg"/>
+                <img class="head-image up-left" src="/img/upleft.jpg"/>
+                <img class="head-image left" src="/img/left.jpg"/>
+                <img class="head-image down-left" src="/img/downleft.jpg"/>
+                <img class="head-image down" src="/img/down.jpg"/>
+                <img class="head-image down-right" src="/img/downright.jpg"/>
+                <img class="head-image right" src="/img/right.jpg"/>
+                <img class="head-image up-right" src="/img/upright.jpg"/>
+                <img class="head-image front" src="/img/front.jpg"/>
+            </div>
+        </div>
+
         <div class="about-section section-even clearfix">
             <div class="about-photo-holder float-right">
                 <img src="/img/IMG_2865.JPG"/>
@@ -31,3 +46,48 @@
         </div>
     </div>
 </main>
+
+<script type="text/javascript">
+
+    /* Declaring the global variables */
+    var mouseX;
+    var mouseY;
+    var image;
+
+    /* Calling the initialization function */
+    $(init);
+
+    /* The images need to re-initialize on load and on resize, or else the areas
+     * where each image is displayed will be wrong. */
+    $(window).load(init);
+    $(window).resize(init);
+
+    /* Setting the mousemove event caller */
+    $(window).mousemove(getMousePosition);
+
+    /* This function is called on document ready, on load and on resize
+     * and initiallizes all the images */
+    function init(){
+
+        /* Instanciate the mouse position variables */
+        mouseX = 0;
+        mouseY = 0;
+
+        /* Instanciate a HeadImage class for the image */
+        image = new HeadImage("kaloyan");
+    }
+
+    /* This function is called on mouse move and gets the mouse position.
+     * It also calls the HeadImage function to display the correct image*/
+    function getMousePosition(event){
+
+        /* Setting the mouse position variables */
+        mouseX = event.pageX;
+        mouseY = event.pageY;
+
+        /*Calling the setImageDirection function of the HeadImage class
+         * to display the correct image*/
+        image.setImageDirection();
+    }
+
+</script>
