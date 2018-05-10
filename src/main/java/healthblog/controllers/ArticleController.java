@@ -17,10 +17,7 @@ import healthblog.models.User;
 import healthblog.repositories.ArticleRepository;
 import healthblog.repositories.UserRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -31,6 +28,8 @@ public class ArticleController {
 
     @Autowired
     private TagService tagService;
+
+    public static Map<Integer, List<Article>> articlesPerPage = new HashMap<>();
 
     @Autowired
     public ArticleController(ArticleRepository articleRepository, UserRepository userRepository) {
