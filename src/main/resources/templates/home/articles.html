@@ -71,27 +71,42 @@
 
         <div class="pager">
             <div class="fonts-frijole">
-                <th:block th:if="(${pageNum}) * ${articlesPerPageCount} &gt; ${allArticlesCount}">
+                <th:block th:if="(${pageNum}) * ${articlesPerPageCount} &gt;= ${allArticlesCount}">
                     <div class="pager-next">
-                        <a th:href="@{/page/{pageNum}(pageNum=${pageNum} - 1)}" data-wpel-link="internal">Newer posts</a>
+                        <th:block th:if="${category} == 'index'">
+                            <a th:href="@{/page/{pageNum}(pageNum=${pageNum} - 1)}" data-wpel-link="internal">Newer posts</a>
+                        </th:block>
+                        <th:block th:unless="${category} == 'index'">
+                            <a th:href="@{/{category}/page/{pageNum}(pageNum=${pageNum} - 1, category=${category})}" data-wpel-link="internal">Newer posts</a>
+                        </th:block>
                         <div class="meta-line"></div>
                     </div>
                 </th:block>
-                <th:block th:unless="(${pageNum}) * ${articlesPerPageCount} &gt; ${allArticlesCount}">
+                <th:block th:unless="(${pageNum}) * ${articlesPerPageCount} &gt;= ${allArticlesCount}">
                     <th:block th:if="${pageNum} == 1">
                         <div class="pager-previous">
-                            <a th:href="@{/page/{pageNum}(pageNum=${pageNum} + 1)}" data-wpel-link="internal">Older posts</a>
+                            <a th:href="@{/{category}/page/{pageNum}(pageNum=${pageNum} + 1, category=${category})}" data-wpel-link="internal">Older posts</a>
                             <div class="meta-line"></div>
                         </div>
                     </th:block>
                     <th:block th:unless="${pageNum} == 1">
                         <div class="pager-previous">
-                            <a th:href="@{/page/{pageNum}(pageNum=${pageNum} + 1)}" data-wpel-link="internal">Older posts</a>
+                            <th:block th:if="${category} == 'index'">
+                                <a th:href="@{/page/{pageNum}(pageNum=${pageNum} + 1)}" data-wpel-link="internal">Older posts</a>
+                            </th:block>
+                            <th:block th:unless="${category} == 'index'">
+                                <a th:href="@{/{category}/page/{pageNum}(pageNum=${pageNum} + 1, category=${category})}" data-wpel-link="internal">Older posts</a>
+                            </th:block>
                             <div class="meta-line"></div>
                         </div>
 
                         <div class="pager-next">
-                            <a th:href="@{/page/{pageNum}(pageNum=${pageNum} - 1)}" data-wpel-link="internal">Newer posts</a>
+                            <th:block th:if="${category} == 'index'">
+                                <a th:href="@{/page/{pageNum}(pageNum=${pageNum} - 1)}" data-wpel-link="internal">Newer posts</a>
+                            </th:block>
+                            <th:block th:unless="${category} == 'index'">
+                                <a th:href="@{/{category}/page/{pageNum}(pageNum=${pageNum} - 1, category=${category})}" data-wpel-link="internal">Newer posts</a>
+                            </th:block>
                             <div class="meta-line"></div>
                         </div>
                     </th:block>

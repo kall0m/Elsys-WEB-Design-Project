@@ -8,20 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import healthblog.models.Article;
-import healthblog.repositories.ArticleRepository;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
-    private final ArticleRepository articleRepository;
-
     @Autowired
     private ArticleService articleService;
 
-    @Autowired
-    private TagService tagService;
+    /*@Autowired
+    private TagService tagService;*/
 
     private static final int ARTICLES_PER_PAGE_COUNT = 8;
 
@@ -60,8 +57,8 @@ public class HomeController {
     }
 
     @Autowired
-    public HomeController(ArticleRepository articleRepository) {
-        this.articleRepository = articleRepository;
+    public HomeController(ArticleService ArticleService) {
+        this.articleService = articleService;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -105,6 +102,7 @@ public class HomeController {
         }
 
         model.addAttribute("pageNum", 1);
+        model.addAttribute("category", "index");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
         model.addAttribute("view", "home/articles");
@@ -149,7 +147,30 @@ public class HomeController {
 
         model.addAttribute("articles", articlesPerPage);
         model.addAttribute("pageNum", pageNum);
+        model.addAttribute("category", "index");
         model.addAttribute("allArticlesCount", searchedArticles.size());
+        model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("view", "home/articles");
+
+        return "base-layout";
+    }
+
+    @GetMapping("/fitness")
+    public String fitness(Model model) {
+        List<Article> articles = new ArrayList<>();
+
+        try {
+            articles = pageArticles(1, this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()));
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("view", "error/page-not-found");
+
+            return "base-layout";
+        }
+
+        model.addAttribute("articles", articles);
+        model.addAttribute("pageNum", 1);
+        model.addAttribute("category", "fitness");
+        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()).size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
         model.addAttribute("view", "home/articles");
 
@@ -165,7 +186,7 @@ public class HomeController {
         List<Article> articlesPerPage = new ArrayList<>();
 
         try {
-            articlesPerPage = pageArticles(pageNum, this.articleService.getAllArticles());
+            articlesPerPage = pageArticles(pageNum, this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()));
         } catch (IllegalArgumentException exception) {
             model.addAttribute("view", "error/page-not-found");
 
@@ -173,79 +194,107 @@ public class HomeController {
         }
 
         model.addAttribute("articles", articlesPerPage);
+        model.addAttribute("pageNum", pageNum);
+        model.addAttribute("category", "fitness");
+        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()).size());
+        model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
         model.addAttribute("view", "home/articles");
-
-        return "base-layout";
-    }
-
-    @GetMapping("/fitness")
-    public String fitness(Model model) {
-        List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList());
-
-        model.addAttribute("articles", articles);
-        model.addAttribute("view", "home/articles");
-
-        return "base-layout";
-    }
-
-    @GetMapping("/fitness/challenges")
-    public String challenges(Model model) {
-        model.addAttribute("view", "home/fitness-challenges");
-
-        return "base-layout";
-    }
-
-    @GetMapping("/fitness/exercises")
-    public String exercises(Model model) {
-        model.addAttribute("view", "home/fitness-exercises");
 
         return "base-layout";
     }
 
     @GetMapping("/food")
     public String food(Model model) {
-        List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().equals("food")).collect(Collectors.toList());
+        List<Article> articles = new ArrayList<>();
+
+        try {
+            articles = pageArticles(1, this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("food")).collect(Collectors.toList()));
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("view", "error/page-not-found");
+
+            return "base-layout";
+        }
 
         model.addAttribute("articles", articles);
+        model.addAttribute("pageNum", 1);
+        model.addAttribute("category", "food");
+        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("food")).collect(Collectors.toList()).size());
+        model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
         model.addAttribute("view", "home/articles");
 
         return "base-layout";
     }
 
-    @GetMapping("/food/healthy")
-    public String healthy(Model model) {
-        model.addAttribute("view", "home/food-healthy");
+    @GetMapping("/food/page/{pageNum}")
+    public String foodPaging(Model model, @PathVariable Integer pageNum) {
+        if(pageNum <= 1) {
+            return "redirect:/food";
+        }
 
-        return "base-layout";
-    }
+        List<Article> articlesPerPage = new ArrayList<>();
 
-    @GetMapping("/food/desserts")
-    public String desserts(Model model) {
-        model.addAttribute("view", "home/food-desserts");
+        try {
+            articlesPerPage = pageArticles(pageNum, this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("food")).collect(Collectors.toList()));
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("view", "error/page-not-found");
+
+            return "base-layout";
+        }
+
+        model.addAttribute("articles", articlesPerPage);
+        model.addAttribute("pageNum", pageNum);
+        model.addAttribute("category", "food");
+        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("food")).collect(Collectors.toList()).size());
+        model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("view", "home/articles");
 
         return "base-layout";
     }
 
     @GetMapping("/lifestyle")
     public String lifestyle(Model model) {
-        List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().equals("lifestyle")).collect(Collectors.toList());
+        List<Article> articles = new ArrayList<>();
+
+        try {
+            articles = pageArticles(1, this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("lifestyle")).collect(Collectors.toList()));
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("view", "error/page-not-found");
+
+            return "base-layout";
+        }
 
         model.addAttribute("articles", articles);
+        model.addAttribute("pageNum", 1);
+        model.addAttribute("category", "lifestyle");
+        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("lifestyle")).collect(Collectors.toList()).size());
+        model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
         model.addAttribute("view", "home/articles");
 
         return "base-layout";
     }
 
-    @GetMapping("/lifestyle/wear-it-better")
-    public String wearItBetter(Model model) {
-        model.addAttribute("view", "home/lifestyle-wear-it-better");
+    @GetMapping("/lifestyle/page/{pageNum}")
+    public String lifestylePaging(Model model, @PathVariable Integer pageNum) {
+        if(pageNum <= 1) {
+            return "redirect:/lifestyle";
+        }
 
-        return "base-layout";
-    }
+        List<Article> articlesPerPage = new ArrayList<>();
 
-    @GetMapping("/lifestyle/motivation")
-    public String motivation(Model model) {
-        model.addAttribute("view", "home/lifestyle-motivation");
+        try {
+            articlesPerPage = pageArticles(pageNum, this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("lifestyle")).collect(Collectors.toList()));
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("view", "error/page-not-found");
+
+            return "base-layout";
+        }
+
+        model.addAttribute("articles", articlesPerPage);
+        model.addAttribute("pageNum", pageNum);
+        model.addAttribute("category", "lifestyle");
+        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("lifestyle")).collect(Collectors.toList()).size());
+        model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("view", "home/articles");
 
         return "base-layout";
     }
@@ -253,20 +302,6 @@ public class HomeController {
     @GetMapping("/about")
     public String about(Model model) {
         model.addAttribute("view", "home/about");
-
-        return "base-layout";
-    }
-
-    @GetMapping("/about/my-transformation")
-    public String myTransformation(Model model) {
-        model.addAttribute("view", "home/about-my-transformation");
-
-        return "base-layout";
-    }
-
-    @GetMapping("/about/me-myself-and-i")
-    public String meMyselfAndI(Model model) {
-        model.addAttribute("view", "home/about-me-myself-and-i");
 
         return "base-layout";
     }
