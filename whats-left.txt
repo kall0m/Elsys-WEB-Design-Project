@@ -1,0 +1,23 @@
+style about me page
+
+style rotating head
+
+style contact me page
+
+style login, register, create article, edit article and delete article pages
+
+fix similar articles listing $
+
+add popular tags to sidebar
+
+add text editor when creating articles
+
+style footer
+
+fix logo resolution
+
+fix images size
+
+replace Home in nav with something else
+
+fix keeping value in search field ?

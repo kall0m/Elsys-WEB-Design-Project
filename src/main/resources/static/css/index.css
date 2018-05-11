@@ -73,6 +73,12 @@
     width: 30%;
 }
 
+.meta-line {
+    width: 50px;
+    border-bottom: 1px solid;
+    margin: 0.3em auto 0 auto;
+}
+
 .search-submit {
     display: none;
 }

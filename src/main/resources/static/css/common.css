@@ -9,8 +9,8 @@ body {
   font-size: 100%;
   word-spacing: 1px;
   line-height: 26px;
-  font-family: "freightsans_regular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: 300;
+  font-family: "proxima-nova", sans-serif;
   text-transform: none;
   letter-spacing: 0;
   color: #6b6b6b;
@@ -41,6 +41,7 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
 
 .fonts-frijole {
   font-family: 'Frijole', cursive;
+  font-weight: 300;
 }
 
 .fonts-display {
@@ -64,17 +65,26 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
   .main-container {
     width: 1020px;
   }
+  .mid-section-title {
+    font-size: 40px;
+  }
 }
 
 @media (min-width: 1415px) {
   .main-container {
     width: 1313px;
   }
+  .mid-section-title {
+    font-size: 50px;
+  }
 }
 
 @media (min-width: 1602px) {
   .main-container {
     width: 1400px;
+  }
+  .mid-section-title {
+    font-size: 60px;
   }
 }
 
