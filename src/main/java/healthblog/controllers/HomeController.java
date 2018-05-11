@@ -180,7 +180,7 @@ public class HomeController {
 
     @GetMapping("/fitness")
     public String fitness(Model model) {
-        List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().toLowerCase().equals("fitness")).collect(Collectors.toList());
+        List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList());
 
         model.addAttribute("articles", articles);
         model.addAttribute("view", "home/articles");
@@ -204,7 +204,7 @@ public class HomeController {
 
     @GetMapping("/food")
     public String food(Model model) {
-        List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().toLowerCase().equals("food")).collect(Collectors.toList());
+        List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().equals("food")).collect(Collectors.toList());
 
         model.addAttribute("articles", articles);
         model.addAttribute("view", "home/articles");
@@ -228,7 +228,7 @@ public class HomeController {
 
     @GetMapping("/lifestyle")
     public String lifestyle(Model model) {
-        List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().toLowerCase().equals("lifestyle")).collect(Collectors.toList());
+        List<Article> articles = this.articleRepository.findAll().stream().filter(a -> a.getCategory().equals("lifestyle")).collect(Collectors.toList());
 
         model.addAttribute("articles", articles);
         model.addAttribute("view", "home/articles");

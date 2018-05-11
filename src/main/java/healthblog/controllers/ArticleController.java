@@ -53,7 +53,7 @@ public class ArticleController {
         User userEntity = this.userRepository.findByEmail(user.getUsername());
 
         Article article = new Article(
-                articleBindingModel.getCategory(),
+                articleBindingModel.getCategory().toLowerCase(),
                 articleBindingModel.getTitle(),
                 articleBindingModel.getContent(),
                 userEntity,
@@ -113,7 +113,8 @@ public class ArticleController {
         }
 
         model.addAttribute("article", article);
-        model.addAttribute("similarArticles", similar);
+        model.addAttribute("similarArticles1", similar.subList(0, 5));
+        model.addAttribute("similarArticles2", similar.subList(5, 10));
         model.addAttribute("view", "article/details");
 
         return "base-layout";
