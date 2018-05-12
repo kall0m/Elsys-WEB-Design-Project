@@ -1,45 +1,56 @@
 <main th:remove="tag">
     <div class="main-container text-center">
-        <div class="primary contact-form-holder">
-            <h1>Feeling formal?</h1>
-            <p>Fill out this form and I will contact you soon.</p>
+        <div class="page-section contact-section">
+            <div class="contact-image"></div>
+        </div>
 
-            <div class="contact-form">
+        <div class="page-section contact-section">
+
+            <h3 class="fonts-frijole">“Treat everyone you meet like God in drag.” -Ram Dass</h3>
+            <p>Fill out this form and I’ll do my best to respond!</p>
+
+            <div class="contact-subsection">
                 <form method="post" th:action="@{/contact}">
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" placeholder="First Name" name="firstName"/>
+                    <p class="contact-message">
+                        <textarea id="message" name="message" placeholder="Hi, Kaloyan! I am writing to you..." cols="45" rows="8" maxlength="65525" required="required"></textarea>
+                    </p>
 
-                    <label for="lastName">First Name</label>
-                    <input type="text" id="lastName" placeholder="Last Name" name="lastName"/>
+                    <p class="contact-field">
+                        <input type="text" id="firstName" placeholder="First Name" name="firstName" size="30" maxlength="245"/>
+                    </p>
 
-                    <label for="email">First Name</label>
-                    <input type="email" id="email" placeholder="Email" name="email"/>
+                    <p class="contact-field">
+                        <input type="text" id="lastName" placeholder="Last Name" name="lastName" size="30" maxlength="245"/>
+                    </p>
 
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message"></textarea>
+                    <p class="contact-field">
+                        <input type="email" id="email" placeholder="Email" name="email" value="" size="30" maxlength="100" aria-describedby="email-notes"/>
+                    </p>
 
-                    <button type="submit" class="btn" onClick="return checker();">Send</button>
+                    <p class="form-submit">
+                        <input name="submit" type="submit" id="submit" class="fonts-frijole" onClick="return checker();" value="Send"/>
+                    </p>
                 </form>
             </div>
         </div>
 
-        <div class="sidebar contact-sidebar">
-            <h1>Prefer other methods?</h1>
+        <div class="page-section contact-section">
+            <h1 class="fonts-frijole">Prefer other methods?</h1>
             <p>Contact me through my phone, email or location</p>
 
-            <div class="sidebar-content">
-                <div class="widget contact-phone">
-                    <h3>Phone</h3>
+            <div class="contact-subsection">
+                <div class="contact-widget contact-phone">
+                    <h3 class="fonts-frijole">Phone</h3>
                     <p>0884410530</p>
                 </div>
 
-                <div class="widget contact-email">
-                    <h3>Email</h3>
+                <div class="contact-widget contact-email">
+                    <h3 class="fonts-frijole">Email</h3>
                     <p>k.madjunov@gmail.com</p>
                 </div>
 
-                <div class="widget contact-map">
-                    <h3>Location</h3>
+                <div class="contact-widget contact-map">
+                    <h3 class="fonts-frijole">Location</h3>
                     <div id="map"></div>
                     <script async="async" defer="defer"
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp1KxJT15zpkEjd8zqRj7pnr-A4e2ja2g&amp;callback=initMap">

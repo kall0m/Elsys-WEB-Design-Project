@@ -1,43 +1,75 @@
-.contact-form-holder {
-    width: 50%;
-    float: left;
-    padding: 30px 120px;
-}
-
-.contact-form {
-    background: #8F8073;
-    padding: 30px 20px;
-    margin-top: 30px;
-}
-
-.contact-form input, textarea {
-    text-align: left;
-    display: block;
+.contact-section {
     width: 100%;
+}
+
+.contact-image {
+    background: url(../img/cover1.jpg);
+    background-position: 50%;
+    background-size: cover;
+    height: 500px;
+}
+
+.contact-subsection {
+    padding: 30px 50px;
+    margin-top: 3%;
+}
+
+.contact-subsection p {
+    font-size: 20px;
+}
+
+.contact-message {
+    margin-bottom: 1%;
+}
+
+.contact-field {
+    display: inline;
+}
+
+.contact-subsection input, textarea {
+    text-align: left;
     margin-bottom: 15px;
 }
 
-.contact-form textarea {
-    height: 100px;
+.contact-subsection input[type="email"], input[type="text"] {
+    width: 32%;
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 2%;
 }
 
-.contact-form label {
-    display: block;
-    margin-bottom: 10px;
-    text-align: left;
+.contact-subsection input[type="email"] {
+    margin-right: 0;
 }
 
-.contact-sidebar {
-    width: 50%;
-    float: right;
-    padding: 30px 120px;
+.contact-subsection input#submit {
+    margin-top: 1%;
+    height: 37px;
+    padding: 5px 15px;
+    width: 100%;
+    background: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
 }
 
-.contact-phone {
+.contact-subsection textarea {
+    resize: none;
+}
 
+.contact-widget {
+    border-bottom: 1px solid;
+    padding-bottom: 3%;
+    margin-bottom: 3%;
+}
+
+.contact-widget:first-of-type {
+    border-top: 1px solid;
+    padding-top: 3%;
 }
 
 #map {
     height: 400px;
     width: 100%;
+    margin: 20px 0;
 }
