@@ -29,10 +29,16 @@ a {
   text-decoration: none;
 }
 
-input, textarea {
+input, textarea, button {
   color: #000;
   border: 1px solid #000;
   background: none;
+  text-align: left;
+}
+
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"] {
+  line-height: 1.8;
+  padding: 9px 10px;
 }
 
 textarea {
@@ -43,10 +49,6 @@ textarea {
 button, html input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
-}
-
-input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"] {
-  padding: 4px 12px 6px;
 }
 
 .fonts-frijole {
@@ -198,27 +200,37 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
 }
 
 .btn {
-  border-radius: 10px;
-  height: 30px;
-  width: 100px;
-}
-
-.login-form {
-  border-radius: 25px;
-  background: #EAE6E5;
-  padding: 30px 20px;
-  margin-top: 30px;
-}
-
-.login-form input {
-  text-align: left;
-  display: block;
+  margin-top: 1%;
+  padding: 8px;
   width: 100%;
-  margin-bottom: 15px;
+  background: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
 }
 
-.login-form label {
-  display: block;
+/* LOGIN PAGE */
+
+#login-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#login-form input {
+  width: 100%;
+}
+
+#login-form input#submit {
+  margin-top: 1%;
+  padding: 8px;
+  width: 100%;
+  background: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+#login-form label {
   margin-bottom: 10px;
   text-align: left;
 }
