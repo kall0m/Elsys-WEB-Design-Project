@@ -1,40 +1,32 @@
 <main th:remove="tag">
-    <div class="container body-content span=8 offset=2">
-        <div class="well">
-            <form class="form-horizontal" th:action="@{/register}" method="post">
-                <fieldset>
-                    <legend>Register</legend>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_email">Email</label>
-                        <div class="col-sm-4 ">
-                            <input class="form-control" type="email" id="user_email" placeholder="Email" name="email" required="required"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_fullname">Full Name</label>
-                        <div class="col-sm-4 ">
-                            <input class="form-control" type="text" id="user_fullname" placeholder="Full Name" name="fullName" required="required"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_password_first">Password</label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control" id="user_password_first" placeholder="Password" name="password" required="required"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_password_second">Confirm Password</label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control" id="user_password_second" placeholder="Password" name="confirmPassword" required="required"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4 col-sm-offset-4">
-                            <a class="btn btn-default" th:href="@{/}">Cancel</a>
-                            <input value="Submit" type="submit" class="btn btn-primary"/>
-                        </div>
-                    </div>
-                </fieldset>
+    <div class="main-container">
+        <div class="page-section">
+            <form id="login-form" th:action="@{/register}" method="post">
+                <p class="login-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Email" name="email" value="" size="40" aria-required="true" aria-invalid="false"/>
+                </p>
+
+                <p class="login-field">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Full Name" name="fullName" value="" size="40" aria-required="true" aria-invalid="false"/>
+                </p>
+
+                <p class="login-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Password" name="password"/>
+                </p>
+
+                <p class="login-field">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword"/>
+                </p>
+
+                <p class="form-submit">
+                    <input name="submit" type="submit" id="submit" class="fonts-frijole" onClick="return checker();" value="Register"/>
+                    <a th:href="@{/}"><button class="btn fonts-frijole">Cancel</button></a>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                </p>
             </form>
         </div>
     </div>
