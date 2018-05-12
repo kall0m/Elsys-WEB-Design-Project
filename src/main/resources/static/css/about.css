@@ -1,32 +1,42 @@
-.about-section {
-    padding: 30px;
+.page-section {
+    border-bottom: 1px solid;
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+}
+
+.page-section:first-of-type {
+    border-top: 1px solid;
+    padding-top: 5%;
+}
+
+.about-subsection {
     position: relative;
     text-align: center;
     z-index: 0;
 }
 
-.main-section {
+.main-subsection {
+    height: 350px;
     background: #8b4a2e url(../img/fitness-pattern.jpg) repeat center center;
-    margin-bottom: 5%;
-    height: 400px;
 }
 
-.food-section {
-    background: #8b4a2e url(../img/healthy-food-pattern.jpg) repeat center center;
-    height: 500px;
+.secondary-subsection {
+    height: 450px;
     width: 36%;
+}
+
+.food-subsection {
+    background: #8b4a2e url(../img/healthy-food-pattern.jpg) repeat center center;
     float: left;
 }
 
-.programming-section {
+.programming-subsection {
     background: #163a5e url(../img/programming-pattern.jpg) repeat center center;
-    height: 500px;
-    width: 36%;
     float: right;
 }
 
-.mid-section {
-    margin: 80px 0;
+.rotating-head {
+    padding: 95px 0;
 }
 
 .text {
@@ -36,45 +46,40 @@
     z-index: 20;
 }
 
-.main-title {
-    font-size: 60px;
-}
-
 .about-title {
     line-height: 1;
     color: #12130F;
     margin: 20px 0 20px;
 }
 
-.programming-color {
-    color: #EAE6E5 !important;
-}
-
-.about-main {
-    max-width: 880px;
-    width: calc(100% - 340px);
-}
-
 .about-intro {
     float: none;
-    margin: 2.5% auto 0;
     line-height: 1.4;
 }
 
 .about-intro p {
     margin-bottom: 0;
-    font-size: 24px;
     color: #12130F;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
 }
 
+.main-intro {
+    max-width: 980px;
+    margin: 4% auto 0;
+    width: calc(100% - 300px);
+}
+
 .image-section {
-    width: 100%;
-    margin: 0 auto;
+    width: 36%;
 }
 
 .image-section img {
-    width: 300px;
-    height: 300px;
+    display: block;
+    width: 100% !important;
+    height: auto;
+}
+
+.mid-section-bar {
+    margin: 30px 0;
 }
