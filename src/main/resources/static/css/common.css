@@ -13,7 +13,7 @@ body {
   font-family: "proxima-nova", sans-serif;
   text-transform: none;
   letter-spacing: 0;
-  color: #6b6b6b;
+  color: #12130F;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,14 +29,24 @@ a {
   text-decoration: none;
 }
 
-input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"] {
-  padding: 4px 12px 6px;
-}
-
-input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"], textarea {
+input, textarea {
   color: #000;
   border: 1px solid #000;
   background: none;
+}
+
+textarea {
+  padding: 0.5em 1em;
+  width: 100%;
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"] {
+  padding: 4px 12px 6px;
 }
 
 .fonts-frijole {
@@ -51,6 +61,26 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
   letter-spacing: 3px;
 }
 
+.licorice-color {
+  color: #12130F !important;
+}
+
+.wintergreen-dream-color {
+  color: #5B9279 !important;
+}
+
+.eton-blue-color {
+  color: #8FCB9B !important;
+}
+
+.platinum-color {
+  color: #EAE6E5 !important;
+}
+
+.cinereous-color {
+  color: #8F8073 !important;
+}
+
 .wrapper {
   margin: 5px;
 }
@@ -61,30 +91,66 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
   padding-right: 15px;
 }
 
-@media (min-width: 1122px) {
+@media screen and (max-width: 1414px) {
   .main-container {
     width: 1020px;
   }
-  .mid-section-title {
+  .about-subsection {
+    padding: 10px 30px;
+  }
+  .main-title {
+    font-size: 50px;
+  }
+  .secondary-title {
     font-size: 40px;
+  }
+  .image-section{
+    height: 350px;
+  }
+  .about-intro p {
+    font-size: 20px;
   }
 }
 
-@media (min-width: 1415px) {
+@media screen and (min-width: 1415px) {
   .main-container {
     width: 1313px;
   }
-  .mid-section-title {
+  .about-subsection {
+    padding: 20px 30px;
+  }
+  .main-title {
+    font-size: 55px;
+  }
+  .secondary-title {
     font-size: 50px;
+  }
+  .image-section{
+    height: 450px;
+  }
+  .about-intro p {
+    font-size: 22px;
   }
 }
 
-@media (min-width: 1602px) {
+@media screen and (min-width: 1602px) {
   .main-container {
     width: 1400px;
   }
-  .mid-section-title {
+  .about-subsection {
+    padding: 30px;
+  }
+  .main-title {
     font-size: 60px;
+  }
+  .secondary-title {
+    font-size: 50px;
+  }
+  .image-section{
+    height: 500px;
+  }
+  .about-intro p {
+    font-size: 24px;
   }
 }
 
