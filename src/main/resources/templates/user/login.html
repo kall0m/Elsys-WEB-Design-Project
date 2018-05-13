@@ -12,9 +12,9 @@
                     <input type="password" id="password" placeholder="Password" name="password" size="30" maxlength="245"/>
                 </p>
 
-                <p class="form-submit">
-                    <input name="submit" type="submit" id="submit" class="fonts-frijole" onClick="return checker();" value="Login"/>
-                    <a th:href="@{/}"><button class="btn fonts-frijole">Cancel</button></a>
+                <p>
+                    <input name="submit" type="submit" id="submit" class="form-submit fonts-bangers" onClick="return checker();" value="Login"/>
+                    <a th:href="@{/}"><button class="btn fonts-bangers">Cancel</button></a>
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 </p>
             </form>

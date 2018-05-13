@@ -10,7 +10,7 @@
                                     <object><a th:href="@{/{category}(category=${article.category})}" th:text="${article.category}"></a></object>
                                 </h4>
 
-                                <h1 class="article-title fonts-frijole" th:text="${article.title}"></h1>
+                                <h1 class="article-title fonts-bangers" th:text="${article.title}"></h1>
 
                                 <div class="article-info fonts-display">
                                     <span>by
@@ -75,7 +75,7 @@
         </div>
 
         <div class="pager">
-            <div class="fonts-frijole">
+            <div class="fonts-bangers">
                 <th:block th:if="(${pageNum}) * ${articlesPerPageCount} &gt;= ${allArticlesCount}">
                     <div class="pager-next">
                         <th:block th:if="${category} == 'index'">

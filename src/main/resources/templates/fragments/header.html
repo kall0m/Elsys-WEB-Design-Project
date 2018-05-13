@@ -1,39 +1,50 @@
 <header th:fragment="header" th:remove="tag">
-    <img id="cover-image" th:src="@{/img/background2.jpeg}"/>
-
-    <div class="logo-holder">
-        <a th:href="@{/}" title="The Aesthetic Beast">
-            <img id="logo" th:src="@{/img/logo-4.png}" alt="The Aesthetic Beast"/>
-        </a>
-    </div>
+    <!--<img id="cover-image" th:src="@{/img/background2.jpeg}"/>-->
 
     <nav id="nav">
         <div class="nav-content fonts-display">
-            <p class="nav-link text-left alpha">
+            <p class="logo logo-mobile">
+                <a th:href="@{/}" title="The Aesthetic Beast">
+                    <img class="logo-img" th:src="@{/img/logo-8.png}" alt="The Aesthetic Beast"/>
+                </a>
+            </p>
+
+            <br class="logo-mobile-br"/>
+
+            <p class="text-left alpha">
                 <a class="underline" th:href="@{/fitness}">Fitness</a>
             </p>
 
-            <p class="nav-link text-left">
-                <a class="underline" th:href="@{/food}">Food</a>
-            </p>
-
-            <p class="nav-link text-left">
+            <p class="text-left">
                 <a class="underline" th:href="@{/lifestyle}">Lifestyle</a>
             </p>
 
-            <p class="logo-space"></p>
+            <p class="text-left">
+                <a class="underline" th:href="@{/food}">Food</a>
+            </p>
 
-            <p class="nav-link text-right">
+            <p class="logo logo-normal">
+                <a th:href="@{/}" title="The Aesthetic Beast">
+                    <img class="logo-img" th:src="@{/img/logo-8.png}" alt="The Aesthetic Beast"/>
+                </a>
+            </p>
+
+            <p class="text-right">
                 <a class="underline" th:href="@{/}">Home</a>
             </p>
 
-            <p class="nav-link text-right">
-                <a class="underline" th:href="@{/about}">About Me</a>
+            <p class="text-right">
+                <a class="underline" th:href="@{/about}">About</a>
             </p>
 
-            <p class="nav-link text-right omega">
-                <a class="underline" th:href="@{/contact}">Contact Me</a>
+            <p class="text-right omega">
+                <a class="underline" th:href="@{/contact}">Contact</a>
             </p>
         </div>
     </nav>
+
+    <div class="page-section">
+        <h1 class="fonts-bangers">"The human body is the best picture of the human soul."</h1>
+        <p>- Ludwig Wittgenstein</p>
+    </div>
 </header>

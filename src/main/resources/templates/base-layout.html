@@ -5,13 +5,15 @@
 
 <body>
 
-<div class="wrapper clearfix">
-    <header class="page-header text-center" th:include="fragments/header"></header>
+<div class="page-border clearfix">
+    <div class="wrap">
+        <header class="page-header text-center" th:include="fragments/header"></header>
 
-    <main th:include="${view}"></main>
+        <main th:include="${view}"></main>
+
+        <footer class="page-footer text-center" th:include="fragments/footer"></footer>
+    </div>
 </div>
-
-<footer class="page-footer text-center" th:include="fragments/footer"></footer>
 
 <span th:include="fragments/scripts-bundle"></span>
 

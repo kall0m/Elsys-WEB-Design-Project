@@ -1,7 +1,35 @@
 <footer th:fragment="footer" th:remove="tag">
-    <div class="container modal-footer">
-        <p>
-            Copyright © 2018+
+    <div class="footer-utility">
+        <p class="footer-category">
+            <a th:href="@{/fitness}">Fitness</a>
+        </p>
+
+        <p class="footer-category">
+            <a th:href="@{/lifestyle}">Lifestyle</a>
+        </p>
+
+        <p class="footer-category">
+            <a th:href="@{/food}">Food</a>
+        </p>
+    </div>
+
+    <div class="footer-utility">
+        <ul class="social-list">
+            <li>
+                <a target="_blank" href="https://www.facebook.com/kaloyan.madjunov"><img th:src="@{/img/facebook.png}"/></a>
+            </li>
+            <li>
+                <a target="_blank" href="https://www.instagram.com/kaloyanmad/"><img th:src="@{/img/instagram.png}"/></a>
+            </li>
+            <li>
+                <a target="_blank" href="https://www.pinterest.com/apple_banana/"><img th:src="@{/img/pinterest.png}"/></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer-utility">
+        <p class="footer-copyright">
+            Copyright © 2018
         </p>
     </div>
 </footer>

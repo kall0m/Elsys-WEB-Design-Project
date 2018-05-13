@@ -5,31 +5,33 @@
 
 <body>
 
-<div class="wrapper clearfix">
-    <header class="page-header text-center" th:include="fragments/header"></header>
+<div class="page-border clearfix">
+    <div class="wrap">
+        <header class="page-header text-center" th:include="fragments/header"></header>
 
-    <main th:remove="tag">
-        <div class="main-container clearfix">
-            <div class="page-section text-center">
-                <h1 class="fonts-frijole">Oh snap! It looks like there's nothing here.</h1>
-                <p>Maybe try a search, or just go back to the start?</p>
+        <main th:remove="tag">
+            <div class="main-container clearfix">
+                <div class="page-section text-center">
+                    <h1 class="fonts-frijole">Oh snap! It looks like there's nothing here.</h1>
+                    <p>Maybe try a search, or just go back to the start?</p>
 
-                <div class="page-subsection">
-                    <form th:action="@{/}" th:object="${s}">
-                        <input type="search" placeholder="Search..." th:value="${s}" name="s"/>
-                        <input type="submit" class="search-submit" onClick="return checker();" value="Search"/>
-                    </form>
+                    <div class="page-subsection">
+                        <form th:action="@{/}" th:object="${s}">
+                            <input type="search" placeholder="Search..." th:value="${s}" name="s"/>
+                            <input type="submit" class="search-submit" onClick="return checker();" value="Search"/>
+                        </form>
 
-                    <div>
-                        <a th:href="@{/}"><button class="btn fonts-frijole">Go Home</button></a>
+                        <div>
+                            <a th:href="@{/}"><button class="btn fonts-frijole">Go Home</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
 
-<footer class="page-footer text-center" th:include="fragments/footer"></footer>
+        <footer class="page-footer text-center" th:include="fragments/footer"></footer>
+    </div>
+</div>
 
 <span th:include="fragments/scripts-bundle"></span>
 

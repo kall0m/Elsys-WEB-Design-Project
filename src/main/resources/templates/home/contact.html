@@ -1,14 +1,14 @@
 <main th:remove="tag">
     <div class="main-container text-center">
         <div class="page-section contact-section">
-            <div class="contact-image"></div>
+            <div class="contact-page-image"></div>
         </div>
 
         <div class="page-section contact-section">
-            <h3 class="fonts-frijole">“Treat everyone you meet like God in drag.” -Ram Dass</h3>
+            <h3 class="fonts-bangers">“Treat everyone you meet like God in drag.” -Ram Dass</h3>
             <p>Fill out this form and I’ll do my best to respond!</p>
 
-            <div class="page-subsection contact-subsection">
+            <div class="page-subsection contact-form">
                 <form method="post" th:action="@{/contact}">
                     <p class="contact-message">
                         <textarea id="message" name="message" placeholder="Hi, Kaloyan! I am writing to you..." cols="45" rows="8" maxlength="65525" required="required"></textarea>
@@ -26,30 +26,40 @@
                         <input type="email" id="email" placeholder="Email" name="email" value="" size="30" maxlength="100" aria-describedby="email-notes"/>
                     </p>
 
-                    <p class="form-submit">
-                        <input name="submit" type="submit" id="submit" class="fonts-frijole" onClick="return checker();" value="Send"/>
+                    <p>
+                        <input name="submit" type="submit" id="submit" class="form-submit fonts-bangers" onClick="return checker();" value="Send"/>
                     </p>
                 </form>
             </div>
         </div>
 
         <div class="page-section contact-section">
-            <h1 class="fonts-frijole">Prefer other methods?</h1>
+            <h1 class="fonts-bangers">Prefer other methods?</h1>
             <p>Contact me through my phone, email or location</p>
 
-            <div class="page-subsection contact-subsection">
-                <div class="contact-widget contact-phone">
-                    <h3 class="fonts-frijole">Phone</h3>
-                    <p>0884410530</p>
+            <div class="page-subsection contact-form">
+                <div class="contact-widget contact-social-media">
+                    <h3 class="fonts-bangers">Social Media</h3>
+                    <ul class="social-list">
+                        <li>
+                            <a target="_blank" href="https://www.facebook.com/kaloyan.madjunov"><img th:src="@{/img/facebook.png}"/></a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.instagram.com/kaloyanmad/"><img th:src="@{/img/instagram.png}"/></a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.pinterest.com/apple_banana/"><img th:src="@{/img/pinterest.png}"/></a>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="contact-widget contact-email">
-                    <h3 class="fonts-frijole">Email</h3>
-                    <p>k.madjunov@gmail.com</p>
+                    <h3 class="fonts-bangers">Email</h3>
+                    <a href="mailto:k.madjunov@gmail.com"><p>k.madjunov@gmail.com</p></a>
                 </div>
 
                 <div class="contact-widget contact-map">
-                    <h3 class="fonts-frijole">Location</h3>
+                    <h3 class="fonts-bangers">Location</h3>
                     <div id="map"></div>
                     <script async="async" defer="defer"
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp1KxJT15zpkEjd8zqRj7pnr-A4e2ja2g&amp;callback=initMap">

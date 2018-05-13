@@ -7,7 +7,7 @@
                         <object><a th:href="@{/{category}(category=${article.category})}" th:text="${article.category}"></a></object>
                     </h4>
 
-                    <h1 class="article-title fonts-frijole" th:text="${article.title}"></h1>
+                    <h1 class="article-title fonts-bangers" th:text="${article.title}"></h1>
 
                     <div class="article-info fonts-display">
                                     <span>by
@@ -42,7 +42,7 @@
             </div>
 
             <div class="page-section post-section">
-                <h1 class="fonts-frijole">You may also like:</h1>
+                <h1 class="fonts-bangers">You may also like:</h1>
 
                 <ul class="page-subsection">
                     <li class="article-holder" th:each="article : ${similarArticles}">
@@ -53,7 +53,7 @@
                                         <object><a th:href="@{/{category}(category=${article.category})}" th:text="${article.category}"></a></object>
                                     </h4>
 
-                                    <h3 class="fonts-frijole" th:text="${article.title}"></h3>
+                                    <h3 class="fonts-bangers" th:text="${article.title}"></h3>
                                 </div>
 
                                 <div class="similar-articles-images">
