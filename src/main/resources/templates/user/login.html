@@ -1,13 +1,13 @@
 <main th:remove="tag">
     <div class="main-container">
         <div class="page-section">
-            <form id="login-form" th:action="@{/login}" method="post">
-                <p class="login-field">
+            <form id="form-horizontal" th:action="@{/login}" method="post">
+                <p class="form-field">
                     <label for="email">Email</label>
                     <input type="email" id="email" placeholder="Email" name="email" value="" size="30" maxlength="100" aria-describedby="email-notes"/>
                 </p>
 
-                <p class="login-field">
+                <p class="form-field">
                     <label for="password">Password</label>
                     <input type="password" id="password" placeholder="Password" name="password" size="30" maxlength="245"/>
                 </p>

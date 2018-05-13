@@ -8,7 +8,7 @@ body {
   margin: 0;
   font-size: 100%;
   word-spacing: 1px;
-  line-height: 26px;
+  line-height: 1.8;
   font-weight: 300;
   font-family: "proxima-nova", sans-serif;
   text-transform: none;
@@ -29,14 +29,19 @@ a {
   text-decoration: none;
 }
 
-input, textarea, button {
-  color: #000;
+input, textarea, button, select {
+  color: #12130F;
   border: 1px solid #000;
   background: none;
   text-align: left;
 }
 
-input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"] {
+button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, #form-horizontal input#submit:hover, .contact-subsection input#submit:hover {
+  background: #12130F;
+  color: #5B9279;
+}
+
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"], select {
   line-height: 1.8;
   padding: 9px 10px;
 }
@@ -44,6 +49,19 @@ input[type="text"], input[type="email"], input[type="url"], input[type="password
 textarea {
   padding: 0.5em 1em;
   width: 100%;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #12130F;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #12130F;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #12130F;
 }
 
 button, html input[type="button"], input[type="reset"], input[type="submit"] {
@@ -97,7 +115,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   .main-container {
     width: 1020px;
   }
-  .about-subsection {
+  .page-subsection {
     padding: 10px 30px;
   }
   .main-title {
@@ -118,7 +136,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   .main-container {
     width: 1313px;
   }
-  .about-subsection {
+  .page-subsection {
     padding: 20px 30px;
   }
   .main-title {
@@ -139,7 +157,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   .main-container {
     width: 1400px;
   }
-  .about-subsection {
+  .page-subsection {
     padding: 30px;
   }
   .main-title {
@@ -202,7 +220,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 .btn {
   margin-top: 1%;
   padding: 8px;
-  width: 100%;
   background: none;
   text-align: center;
   text-transform: uppercase;
@@ -211,16 +228,24 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 /* LOGIN PAGE */
 
-#login-form {
+#form-horizontal {
   width: 50%;
   margin: 0 auto;
 }
 
-#login-form input {
+.form-field {
+
+}
+
+#form-horizontal button {
   width: 100%;
 }
 
-#login-form input#submit {
+#form-horizontal input, select {
+  width: 100%;
+}
+
+#form-horizontal input#submit {
   margin-top: 1%;
   padding: 8px;
   width: 100%;
@@ -230,7 +255,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   font-size: 16px;
 }
 
-#login-form label {
+#form-horizontal label {
   margin-bottom: 10px;
   text-align: left;
 }
