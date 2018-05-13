@@ -9,28 +9,28 @@
     padding-top: 5%;
 }
 
-.about-subsection {
+.page-subsection {
     position: relative;
     text-align: center;
     z-index: 0;
 }
 
-.main-subsection {
+.about-main-subsection {
     height: 350px;
     background: #8b4a2e url(../img/fitness-pattern.jpg) repeat center center;
 }
 
-.secondary-subsection {
+.about-secondary-subsection {
     height: 450px;
     width: 36%;
 }
 
-.food-subsection {
+.about-food-subsection {
     background: #8b4a2e url(../img/healthy-food-pattern.jpg) repeat center center;
     float: left;
 }
 
-.programming-subsection {
+.about-programming-subsection {
     background: #163a5e url(../img/programming-pattern.jpg) repeat center center;
     float: right;
 }
