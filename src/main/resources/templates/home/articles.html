@@ -24,7 +24,7 @@
                             </div>
 
                             <div class="article-image">
-                                <img alt="Pic" th:src="${article.image}"/>
+                                <img th:src="@{'data:image/jpeg;base64,'+${article.images[0].base64}}" alt=""/>
                             </div>
                         </div>
                     </a>
@@ -35,7 +35,12 @@
         <div class="sidebar text-center">
             <div class="widget search-field">
                 <form th:action="@{/}" th:object="${s}">
-                    <input type="search" placeholder="Search..." th:value="${s}" name="s"/>
+                    <th:block th:if="${s} != null">
+                        <input type="search" placeholder="Search..." th:value="${s}" name="s"/>
+                    </th:block>
+                    <th:block th:unless="${s} != null">
+                        <input type="search" placeholder="Search..." name="s"/>
+                    </th:block>
                     <input type="submit" class="search-submit" onClick="return checker();" value="Search"/>
                 </form>
             </div>
