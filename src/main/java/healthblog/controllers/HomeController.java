@@ -105,6 +105,7 @@ public class HomeController {
         model.addAttribute("category", "index");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("s", s);
         model.addAttribute("view", "home/articles");
 
         return "base-layout";
@@ -150,6 +151,7 @@ public class HomeController {
         model.addAttribute("category", "index");
         model.addAttribute("allArticlesCount", searchedArticles.size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("s", s);
         model.addAttribute("view", "home/articles");
 
         return "base-layout";

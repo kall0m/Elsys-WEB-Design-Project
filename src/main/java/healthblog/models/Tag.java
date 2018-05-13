@@ -55,16 +55,16 @@ public class Tag {
 
         Tag tag = (Tag) o;
 
-        if (!id.equals(tag.id)) return false;
-        if (!name.equals(tag.name)) return false;
-        return articles.equals(tag.articles);
+        if (id != null ? !id.equals(tag.id) : tag.id != null) return false;
+        if (name != null ? !name.equals(tag.name) : tag.name != null) return false;
+        return articles != null ? articles.equals(tag.articles) : tag.articles == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + articles.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (articles != null ? articles.hashCode() : 0);
         return result;
     }
 }
