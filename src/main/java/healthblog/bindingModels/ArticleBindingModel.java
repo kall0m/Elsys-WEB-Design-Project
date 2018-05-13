@@ -1,6 +1,10 @@
 package healthblog.bindingModels;
 
+import healthblog.models.Image;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 public class ArticleBindingModel {
     @NotNull
@@ -13,6 +17,8 @@ public class ArticleBindingModel {
     private String content;
 
     private String image;
+
+    private List<MultipartFile> images;
 
     private String tags;
 
@@ -54,6 +60,14 @@ public class ArticleBindingModel {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public List<MultipartFile> getImages() {
+        return images;
+    }
+
+    public void setImages(List<MultipartFile> images) {
+        this.images = images;
     }
 }
 

@@ -1,7 +1,11 @@
 package healthblog.controllers;
 
+import healthblog.models.Image;
 import healthblog.models.Tag;
+import healthblog.repositories.ImageRepository;
+import healthblog.services.ImageService;
 import healthblog.services.TagService;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,9 +20,12 @@ import healthblog.models.Article;
 import healthblog.models.User;
 import healthblog.repositories.ArticleRepository;
 import healthblog.repositories.UserRepository;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 public class ArticleController {
@@ -26,15 +33,37 @@ public class ArticleController {
 
     private final UserRepository userRepository;
 
+    private final ImageRepository imageRepository;
+
     @Autowired
     private TagService tagService;
 
-    public static Map<Integer, List<Article>> articlesPerPage = new HashMap<>();
+    @Autowired
+    private ImageService imageService;
+
+    private static List<Article> subListArticles(List<Article> articles) {
+        int articlesFromIndex = 0;
+        int articlesToIndex = 10;
+
+        List<Article> subListedArticles = new ArrayList<>();
+
+        while(true) {
+            try {
+                subListedArticles = articles.subList(articlesFromIndex, articlesToIndex);
+                break;
+            } catch (IndexOutOfBoundsException exception) {
+                articlesToIndex--;
+            }
+        }
+
+        return subListedArticles;
+    }
 
     @Autowired
-    public ArticleController(ArticleRepository articleRepository, UserRepository userRepository) {
+    public ArticleController(ArticleRepository articleRepository, UserRepository userRepository, ImageRepository imageRepository) {
         this.articleRepository = articleRepository;
         this.userRepository = userRepository;
+        this.imageRepository = imageRepository;
     }
 
     @GetMapping("/article/create")
@@ -47,7 +76,7 @@ public class ArticleController {
 
     @PostMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
-    public String createProcess(ArticleBindingModel articleBindingModel) {
+    public String createProcess(ArticleBindingModel articleBindingModel) throws IOException {
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User userEntity = this.userRepository.findByEmail(user.getUsername());
@@ -75,6 +104,42 @@ public class ArticleController {
         }
 
         article.setImage(articleBindingModel.getImage());
+
+        List<Image> imagesBytes = new ArrayList<>();
+
+        for(MultipartFile imageFile : articleBindingModel.getImages()) {
+            byte[] imageBytes = imageFile.getBytes();
+
+            try {
+                Files.write(Paths.get("retrieve-dir/" + "img_original" + "." + "JPG"), imageBytes);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            byte[] decodedImage = Base64.decodeBase64(imageBytes);
+
+            try {
+                Files.write(Paths.get("retrieve-dir/" + "img_decoded" + "." + "JPG"), decodedImage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            String base64 = Base64.encodeBase64URLSafeString(imageBytes);
+
+            Image image = imageRepository.findByBase64(base64);
+
+            if(image == null) {
+                image = new Image(imageBytes);
+
+                image.setBase64(Base64.encodeBase64String(imageBytes));
+
+                this.imageService.saveImage(image);
+            }
+
+            imagesBytes.add(image);
+        }
+
+        article.setImages(imagesBytes);
 
         this.articleRepository.saveAndFlush(article);
 
@@ -113,8 +178,7 @@ public class ArticleController {
         }
 
         model.addAttribute("article", article);
-        model.addAttribute("similarArticles1", similar.subList(0, 5));
-        model.addAttribute("similarArticles2", similar.subList(5, 10));
+        model.addAttribute("similarArticles", subListArticles(similar));
         model.addAttribute("view", "article/details");
 
         return "base-layout";

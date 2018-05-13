@@ -1,5 +1,8 @@
 package healthblog.models;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +23,8 @@ public class Article {
 
     private String image;
 
+    private List<Image> images;
+
     private Date date = new Date();
 
     private List<Tag> tags;
@@ -33,6 +38,7 @@ public class Article {
         this.author = author;
         this.date = date;
         this.tags = new ArrayList<>();
+        this.images = new ArrayList<>();
     }
 
     @Id
@@ -98,6 +104,17 @@ public class Article {
         this.image = image;
     }
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JoinTable(name = "articles_images")
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
     @Column(columnDefinition = "DATETIME", nullable = false)
     public Date getDate() {
         return date;
@@ -128,26 +145,28 @@ public class Article {
 
         Article article = (Article) o;
 
-        if (!id.equals(article.id)) return false;
-        if (!category.equals(article.category)) return false;
-        if (!title.equals(article.title)) return false;
-        if (!content.equals(article.content)) return false;
-        if (!author.equals(article.author)) return false;
-        if (!image.equals(article.image)) return false;
-        if (!date.equals(article.date)) return false;
-        return tags.equals(article.tags);
+        if (id != null ? !id.equals(article.id) : article.id != null) return false;
+        if (category != null ? !category.equals(article.category) : article.category != null) return false;
+        if (title != null ? !title.equals(article.title) : article.title != null) return false;
+        if (content != null ? !content.equals(article.content) : article.content != null) return false;
+        if (author != null ? !author.equals(article.author) : article.author != null) return false;
+        if (image != null ? !image.equals(article.image) : article.image != null) return false;
+        if (images != null ? !images.equals(article.images) : article.images != null) return false;
+        if (date != null ? !date.equals(article.date) : article.date != null) return false;
+        return tags != null ? tags.equals(article.tags) : article.tags == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + category.hashCode();
-        result = 31 * result + title.hashCode();
-        result = 31 * result + content.hashCode();
-        result = 31 * result + author.hashCode();
-        result = 31 * result + image.hashCode();
-        result = 31 * result + date.hashCode();
-        result = 31 * result + tags.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + (image != null ? image.hashCode() : 0);
+        result = 31 * result + (images != null ? images.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (tags != null ? tags.hashCode() : 0);
         return result;
     }
 }
