@@ -29,6 +29,10 @@ a {
   text-decoration: none;
 }
 
+ul {
+  list-style-type: none;
+}
+
 input, textarea, button, select {
   color: #12130F;
   border: 1px solid #000;

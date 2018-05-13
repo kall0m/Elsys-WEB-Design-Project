@@ -1,8 +1,7 @@
 .article-holder {
-    float: left;
     position: relative;
     border-bottom: 1px solid;
-    padding: 2.2em 15px;
+    padding: 3% 3% 12%;
     margin-bottom: 0;
 }
 
@@ -26,9 +25,8 @@
 .article-info {
     text-transform: uppercase;
     font-size: 0.7em;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     font-weight: normal;
-    margin: 0.3em 0;
 }
 
 .article-title {
@@ -45,12 +43,26 @@
 }
 
 .article-image > img {
-    max-width: 100%;
+    width: 100%;
     vertical-align: middle;
+}
+
+.article-content {
+    margin: 3% 0;
 }
 
 .article-details {
     padding: 0;
+}
+
+.similar-articles-descriptions h3, h4 {
+    width: 60%;
+    margin: 2% auto;
+}
+
+.similar-articles-images img {
+    width: 300px;
+    height: auto;
 }
 
 .pager {

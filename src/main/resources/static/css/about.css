@@ -9,6 +9,10 @@
     padding-top: 5%;
 }
 
+.post-section {
+    padding: 4% 4% 0 4%;
+}
+
 .page-subsection {
     position: relative;
     text-align: center;
