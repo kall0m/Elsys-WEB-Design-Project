@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:include="fragments/head" th:with="pageTitle='HealthBlog'"></head>
+
+<body>
+
+<div class="wrapper clearfix">
+    <header class="page-header text-center" th:include="fragments/header"></header>
+
+    <main th:remove="tag">
+        <div class="main-container clearfix">
+            <div class="page-section text-center">
+                <h1 class="fonts-frijole">Oh snap! It looks like there's nothing here.</h1>
+                <p>Maybe try a search, or just go back to the start?</p>
+
+                <div class="page-subsection">
+                    <form th:action="@{/}" th:object="${s}">
+                        <input type="search" placeholder="Search..." th:value="${s}" name="s"/>
+                        <input type="submit" class="search-submit" onClick="return checker();" value="Search"/>
+                    </form>
+
+                    <div>
+                        <a th:href="@{/}"><button class="btn fonts-frijole">Go Home</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer class="page-footer text-center" th:include="fragments/footer"></footer>
+
+<span th:include="fragments/scripts-bundle"></span>
+
+</body>
+</html>
