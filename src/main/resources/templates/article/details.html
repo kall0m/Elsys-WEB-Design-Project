@@ -26,11 +26,13 @@
 
                 <p th:text="${article.content}"></p>
 
-                <th:block th:if="@{'data:image/jpeg;base64,'+${article.images[1].base64}}">
+                <th:block th:if="${article.images.size()} == 2">
                     <div class="article-image article-details">
                         <img th:src="@{'data:image/jpeg;base64,'+${article.images[1].base64}}" alt=""/>
                     </div>
+                </th:block>
 
+                <th:block th:if="${article.images.size()} == 3">
                     <div class="article-image article-details">
                         <img th:src="@{'data:image/jpeg;base64,'+${article.images[2].base64}}" alt=""/>
                     </div>
