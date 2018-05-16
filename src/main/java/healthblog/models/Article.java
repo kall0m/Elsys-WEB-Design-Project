@@ -116,8 +116,8 @@ public class Article {
     }
 
     //@Column(columnDefinition = "DATETIME", nullable = false)
-    @Column(insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(insertable = false, updatable = false) //postgresql
+    @Temporal(TemporalType.TIMESTAMP) //postgresql
     public Date getDate() {
         return date;
     }
