@@ -51,7 +51,7 @@
         <div class="page-section">
             <div class="popular-tags">
                 <th:block th:each="tag : ${popularTags}">
-                    <a th:href="@{/}"><p class="fonts-bangers" th:text="${tag}"></p></a>
+                    <a th:href="@{/{tag}(tag=${tag})}"><p class="fonts-bangers" th:text="${tag}"></p></a>
                 </th:block>
             </div>
         </div>

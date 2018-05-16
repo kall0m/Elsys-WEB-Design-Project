@@ -663,7 +663,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   .about-intro p {
     font-size: 20px;
   }
-  .pager a {
+  .popular-tags a > p, .pager a {
     font-size: 26px;
   }
   .pager-next .meta-line {

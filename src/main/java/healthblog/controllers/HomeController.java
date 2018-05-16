@@ -175,6 +175,31 @@ public class HomeController {
         return "base-layout";
     }
 
+    @GetMapping("/{tagName}")
+    public String popularTag(Model model, @PathVariable String tagName){
+        Tag tag = this.tagService.findTag(tagName);
+
+        if(tag == null) {
+            return "redirect:/";
+        }
+
+        List<Article> articles = this.articleService.getAllArticles()
+                .stream()
+                .filter(a -> a.getTags().contains(tag))
+                .collect(Collectors.toList());
+
+        model.addAttribute("articles", articles);
+        model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
+        model.addAttribute("pageNum", 1);
+        model.addAttribute("category", "index");
+        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()).size());
+        model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("popularTags", getPopularTags());
+        model.addAttribute("view", "home/articles");
+
+        return "base-layout";
+    }
+
     @GetMapping("/fitness")
     public String fitness(Model model) {
         List<Article> articles = new ArrayList<>();
