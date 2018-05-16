@@ -14,6 +14,11 @@ public class Role {
 
     private Set<User> users;
 
+    public Role(String name) {
+        this.name = name;
+        this.users = new HashSet<>();
+    }
+
     public Role() {
         this.users = new HashSet<>();
     }
