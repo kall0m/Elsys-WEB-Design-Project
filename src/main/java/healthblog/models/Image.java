@@ -34,7 +34,7 @@ public class Image {
     }
 
     @Lob
-    @Column(name = "image", nullable = false, columnDefinition = "mediumblob")
+    @Column(name = "image", nullable = false, columnDefinition = "BYTEA")
     public byte[] getBytes() {
         return bytes;
     }

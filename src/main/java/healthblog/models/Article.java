@@ -115,7 +115,9 @@ public class Article {
         this.images = images;
     }
 
-    @Column(columnDefinition = "DATETIME", nullable = false)
+    //@Column(columnDefinition = "DATETIME", nullable = false)
+    @Column(insertable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getDate() {
         return date;
     }
