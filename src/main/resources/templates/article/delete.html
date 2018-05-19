@@ -2,7 +2,7 @@
     <div class="main-container">
         <div class="page-section">
             <form id="form-horizontal" th:action="@{/article/delete/{id}(id=${article.id})}" method="post" enctype="multipart/form-data">
-                <div class="article-image article-details">
+                <div class="article-image article-details parallelogram-image">
                     <img th:src="@{'data:image/jpeg;base64,'+${articleImage}}" alt=""/>
                 </div>
 
