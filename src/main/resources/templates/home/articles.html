@@ -1,18 +1,30 @@
 <main th:remove="tag">
     <div class="main-container clearfix">
-        <div class="primary">
+        <div class="search-field text-center">
+            <form th:action="@{/}" th:object="${s}">
+                <th:block th:if="${s} != null">
+                    <input type="search" placeholder="Search..." th:value="${s}" name="s"/>
+                </th:block>
+                <th:block th:unless="${s} != null">
+                    <input type="search" placeholder="Search..." name="s"/>
+                </th:block>
+                <input type="submit" class="search-submit" onClick="return checker();" value="Search"/>
+            </form>
+        </div>
+
+        <div class="page-section">
             <div class="articles-container clearfix">
                 <div class="article-holder" th:each="article, i : ${articles}">
                     <a th:href="@{/article/{id}(id=${article.id})}">
                         <div class="article">
                             <div class="article-body text-center">
-                                <h4 class="article-info fonts-display">
+                                <h4 class="article-info fonts-regular">
                                     <object><a th:href="@{/{category}(category=${article.category})}" th:text="${article.category}"></a></object>
                                 </h4>
 
                                 <h1 class="article-title fonts-bangers" th:text="${article.title}"></h1>
 
-                                <div class="article-info fonts-display">
+                                <div class="article-info fonts-regular">
                                     <span>by
                                         <span th:text="${article.author.fullName}"></span>
                                     </span>
@@ -26,51 +38,21 @@
                             <div class="article-image parallelogram-image">
                                 <img th:src="@{'data:image/jpeg;base64,'+${articlesImages[i.index]}}" alt=""/>
                             </div>
+
+                            <div class="article-content">
+                                <p th:text="${article.content}"></p>
+                            </div>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
 
-        <div class="sidebar text-center">
-            <div class="widget search-field">
-                <form th:action="@{/}" th:object="${s}">
-                    <th:block th:if="${s} != null">
-                        <input type="search" placeholder="Search..." th:value="${s}" name="s"/>
-                    </th:block>
-                    <th:block th:unless="${s} != null">
-                        <input type="search" placeholder="Search..." name="s"/>
-                    </th:block>
-                    <input type="submit" class="search-submit" onClick="return checker();" value="Search"/>
-                </form>
-            </div>
-
-            <div class="widget social-media-holder fonts-display">
-                <ul class="social-list">
-                    <li>
-                        <a target="_blank" href="https://www.facebook.com/kaloyan.madjunov"><img th:src="@{/img/facebook.png}"/></a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://www.instagram.com/kaloyanmad/"><img th:src="@{/img/instagram.png}"/></a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://www.pinterest.com/apple_banana/"><img th:src="@{/img/pinterest.png}"/></a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="widget quote-of-the-day fonts-display">
-                <h2>Quote of the day</h2>
-                <p style="font-style: italic;">"The human body is the best picture of the human soul."</p>
-                <p>- Ludwig Wittgenstein</p>
-            </div>
-
-            <div class="widget categories fonts-display">
-                <ul class="categories-list">
-                    <a th:href="@{/fitness}"><li>Fitness</li></a>
-                    <a th:href="@{/food}"><li>Food</li></a>
-                    <a th:href="@{/lifestyle}"><li>Lifestyle</li></a>
-                </ul>
+        <div class="page-section">
+            <div class="popular-tags">
+                <th:block th:each="tag : ${popularTags}">
+                    <a th:href="@{/}"><p class="fonts-bangers" th:text="${tag}"></p></a>
+                </th:block>
             </div>
         </div>
 

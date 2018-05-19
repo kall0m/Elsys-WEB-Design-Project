@@ -1,6 +1,8 @@
 package healthblog.controllers;
 
+import healthblog.models.Tag;
 import healthblog.services.ArticleService;
+import healthblog.services.TagService;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ import java.util.stream.Collectors;
 public class HomeController {
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private TagService tagService;
 
     private static final int ARTICLES_PER_PAGE_COUNT = 8;
 
@@ -55,9 +60,18 @@ public class HomeController {
         return searchedArticles;
     }
 
-    @Autowired
-    public HomeController(ArticleService ArticleService) {
-        this.articleService = articleService;
+    private List<String> getPopularTags() {
+        return this.tagService.getAllTags()
+                .stream()
+                .sorted(new Comparator<Tag>() {
+                    @Override
+                    public int compare(Tag t1, Tag t2) {
+                        return t2.getArticles().size() - t1.getArticles().size();
+                    }
+                })
+                .limit(10)
+                .map(t -> t.getName())
+                .collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -107,6 +121,7 @@ public class HomeController {
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
         model.addAttribute("s", s);
+        model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
 
         return "base-layout";
@@ -154,6 +169,7 @@ public class HomeController {
         model.addAttribute("allArticlesCount", searchedArticles.size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
         model.addAttribute("s", s);
+        model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
 
         return "base-layout";
@@ -177,6 +193,7 @@ public class HomeController {
         model.addAttribute("category", "fitness");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()).size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
 
         return "base-layout";
@@ -204,6 +221,7 @@ public class HomeController {
         model.addAttribute("category", "fitness");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()).size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
 
         return "base-layout";
@@ -227,6 +245,7 @@ public class HomeController {
         model.addAttribute("category", "food");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("food")).collect(Collectors.toList()).size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
 
         return "base-layout";
@@ -254,6 +273,7 @@ public class HomeController {
         model.addAttribute("category", "food");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("food")).collect(Collectors.toList()).size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
 
         return "base-layout";
@@ -277,6 +297,7 @@ public class HomeController {
         model.addAttribute("category", "lifestyle");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("lifestyle")).collect(Collectors.toList()).size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
 
         return "base-layout";
@@ -304,6 +325,7 @@ public class HomeController {
         model.addAttribute("category", "lifestyle");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("lifestyle")).collect(Collectors.toList()).size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
+        model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
 
         return "base-layout";

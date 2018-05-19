@@ -1,10 +1,10 @@
 <main th:remove="tag">
     <div class="main-container clearfix">
-        <div class="primary">
-            <h1 class="article-title text-center fonts-bangers">Nothing Found</h1>
+        <div class="page-section text-center">
+            <h1 class="article-title fonts-bangers">Nothing Found</h1>
 
             <div class="page-content">
-                <p>Sorry, but nothing matched your search terms. Please try again with some different keywords.</p>
+                <p class="fonts-regular">Sorry, but nothing matched your search terms. Please try again with some different keywords.</p>
 
                 <form th:action="@{/}" th:object="${s}">
                     <th:block th:if="${s}">
@@ -15,48 +15,6 @@
                     </th:block>
                     <input type="submit" class="search-submit" onClick="return checker();" value="Search"/>
                 </form>
-            </div>
-        </div>
-
-        <div class="sidebar text-center">
-            <div class="widget search-field">
-                <form th:action="@{/}" th:object="${s}">
-                    <th:block th:if="${s}">
-                        <input type="search" placeholder="Search..." th:value="${s}" name="s"/>
-                    </th:block>
-                    <th:block th:unless="${s}">
-                        <input type="search" placeholder="Search..." th:value="${s}" name="s"/>
-                    </th:block>
-                    <input type="submit" class="search-submit" onClick="return checker();" value="Search"/>
-                </form>
-            </div>
-
-            <div class="widget social-media-holder fonts-display">
-                <ul class="social-list">
-                    <li>
-                        <a target="_blank" href="https://www.facebook.com/kaloyan.madjunov"><img th:src="@{/img/facebook.png}"/></a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://www.instagram.com/kaloyanmad/"><img th:src="@{/img/instagram.png}"/></a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://www.pinterest.com/apple_banana/"><img th:src="@{/img/pinterest.png}"/></a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="widget quote-of-the-day fonts-display">
-                <h2>Quote of the day</h2>
-                <p style="font-style: italic;">"The human body is the best picture of the human soul."</p>
-                <p>- Ludwig Wittgenstein</p>
-            </div>
-
-            <div class="widget categories fonts-display">
-                <ul class="categories-list">
-                    <a th:href="@{/fitness}"><li>Fitness</li></a>
-                    <a th:href="@{/food}"><li>Food</li></a>
-                    <a th:href="@{/lifestyle}"><li>Lifestyle</li></a>
-                </ul>
             </div>
         </div>
     </div>
