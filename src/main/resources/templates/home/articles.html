@@ -2,7 +2,7 @@
     <div class="main-container clearfix">
         <div class="primary">
             <div class="articles-container clearfix">
-                <div class="article-holder" th:each="article : ${articles}">
+                <div class="article-holder" th:each="article, i : ${articles}">
                     <a th:href="@{/article/{id}(id=${article.id})}">
                         <div class="article">
                             <div class="article-body text-center">
@@ -24,7 +24,7 @@
                             </div>
 
                             <div class="article-image">
-                                <img th:src="@{'data:image/jpeg;base64,'+${article.images[0].base64}}" alt=""/>
+                                <img th:src="@{'data:image/jpeg;base64,'+${articlesImages[i.index]}}" alt=""/>
                             </div>
                         </div>
                     </a>
