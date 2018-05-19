@@ -2,6 +2,10 @@
     <div class="main-container">
         <div class="page-section">
             <form id="form-horizontal" th:action="@{/article/delete/{id}(id=${article.id})}" method="post" enctype="multipart/form-data">
+                <div class="article-image article-details">
+                    <img th:src="@{'data:image/jpeg;base64,'+${articleImage}}" alt=""/>
+                </div>
+
                 <p class="form-field">
                     <label for="title">Title</label>
                     <input type="text" id="title" placeholder="Title" name="title" value="" size="200" required="required" aria-invalid="false" th:value="${article.title}" disabled="disabled"/>
@@ -21,16 +25,10 @@
                     </select>
                 </p>
 
-                <p class="form-field">
-                    <label for="images">Images</label>
-                    <input type="file" id="images" name="images" multiple="multiple" th:value="${article.images}" disabled="disabled"/>
-                </p>
-
                 <p class="contact-message">
                     <label for="tags">Tags</label>
-                    <textarea id="tags" name="tags" cols="45" rows="8" maxlength="65525" required="required" th:field="${article.tags}" disabled="disabled"></textarea>
+                    <input type="text" id="tags" placeholder="Tags" name="tags" value="" size="200" required="required" aria-invalid="false" th:value="${articleTags}" disabled="disabled"/>
                 </p>
-
 
                 <p>
                     <input name="submit" type="submit" id="submit" class="form-submit fonts-bangers" onClick="return checker();" value="Delete"/>

@@ -28,9 +28,8 @@
 
                 <p class="contact-message">
                     <label for="tags">Tags</label>
-                    <textarea id="tags" name="tags" cols="45" rows="8" maxlength="65525" required="required" th:field="${article.tags}"></textarea>
+                    <input type="text" id="tags" placeholder="Tags" name="tags" value="" size="200" required="required" aria-invalid="false" th:value="${articleTags}"/>
                 </p>
-
 
                 <p>
                     <input name="submit" type="submit" id="submit" class="form-submit fonts-bangers" onClick="return checker();" value="Save"/>
