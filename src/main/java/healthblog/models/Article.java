@@ -21,8 +21,6 @@ public class Article {
 
     private User author;
 
-    private String image;
-
     private List<Image> images;
 
     private Date date = new Date();
@@ -95,18 +93,8 @@ public class Article {
         return this.getContent().substring(0, endIndex) + "...";
     }
 
-    @Column(name = "imageSource", nullable = true)
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "article")
     @Fetch(value = FetchMode.SUBSELECT)
-    @JoinTable(name = "articles_images")
     public List<Image> getImages() {
         return images;
     }
@@ -115,8 +103,12 @@ public class Article {
         this.images = images;
     }
 
-    //@Column(columnDefinition = "DATETIME", nullable = false)
-    @Column(insertable = false, updatable = false) //postgresql
+    public void addImage(Image image) {
+        this.images.add(image);
+    }
+
+    @Column(columnDefinition = "DATETIME", nullable = false)
+    //@Column(insertable = false, updatable = false) //postgresql
     @Temporal(TemporalType.TIMESTAMP) //postgresql
     public Date getDate() {
         return date;
@@ -152,7 +144,6 @@ public class Article {
         if (title != null ? !title.equals(article.title) : article.title != null) return false;
         if (content != null ? !content.equals(article.content) : article.content != null) return false;
         if (author != null ? !author.equals(article.author) : article.author != null) return false;
-        if (image != null ? !image.equals(article.image) : article.image != null) return false;
         if (images != null ? !images.equals(article.images) : article.images != null) return false;
         if (date != null ? !date.equals(article.date) : article.date != null) return false;
         return tags != null ? tags.equals(article.tags) : article.tags == null;
@@ -165,7 +156,6 @@ public class Article {
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (author != null ? author.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (images != null ? images.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (tags != null ? tags.hashCode() : 0);

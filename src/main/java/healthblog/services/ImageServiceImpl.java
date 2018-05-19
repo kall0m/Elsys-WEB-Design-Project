@@ -24,8 +24,8 @@ public class ImageServiceImpl implements ImageService {
         return this.imageRepository.exists(id);
     }
 
-    public Image findImage(byte[] bytes) {
-        return this.imageRepository.findByBytes(bytes);
+    public Image findImage(String path) {
+        return this.imageRepository.findByPath(path);
     }
 
     public void deleteImage(Image image) {

@@ -9,18 +9,15 @@ import java.util.List;
 public class Image {
     private Integer id;
 
-    private byte[] bytes;
+    private String path;
 
-    private String base64;
+    private Article article;
 
-    private List<Article> articles;
+    public Image() {    }
 
-    public Image() {
-    }
-
-    public Image(byte[] bytes) {
-        this.bytes = bytes;
-        this.articles = new ArrayList<Article>();
+    public Image(String path, Article article) {
+        this.path = path;
+        this.article = article;
     }
 
     @Id
@@ -33,33 +30,22 @@ public class Image {
         this.id = id;
     }
 
-    @Lob
-    //@Column(name = "image", nullable = false, columnDefinition = "mediumblob")
-    @Column(name = "image", nullable = false, columnDefinition = "BYTEA") //postgreql
-    public byte[] getBytes() {
-        return bytes;
+    @Column(name = "path", nullable = false)
+    public String getPath() {
+        return path;
     }
 
-    public void setBytes(byte[] bytes) {
-        this.bytes = bytes;
+    public void setPath(String path) {
+        this.path = path;
     }
 
-    @Lob
-    @Column(name = "base64Value", nullable = false)
-    public String getBase64() {
-        return base64;
+    @ManyToOne()
+    @JoinColumn(name = "articleId")
+    public Article getArticle() {
+        return article;
     }
 
-    public void setBase64(String base64) {
-        this.base64 = base64;
-    }
-
-    @ManyToMany(mappedBy = "images")
-    public List<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 }

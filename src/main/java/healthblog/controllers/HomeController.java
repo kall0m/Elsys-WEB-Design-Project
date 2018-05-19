@@ -1,14 +1,16 @@
 package healthblog.controllers;
 
-import healthblog.models.Tag;
 import healthblog.services.ArticleService;
-import healthblog.services.TagService;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import healthblog.models.Article;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -16,9 +18,6 @@ import java.util.stream.Collectors;
 public class HomeController {
     @Autowired
     private ArticleService articleService;
-
-    /*@Autowired
-    private TagService tagService;*/
 
     private static final int ARTICLES_PER_PAGE_COUNT = 8;
 
@@ -97,8 +96,10 @@ public class HomeController {
             }
 
             model.addAttribute("articles", searchedArticles);
+            model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(searchedArticles));
         } else {
             model.addAttribute("articles", articles);
+            model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
         }
 
         model.addAttribute("pageNum", 1);
@@ -147,6 +148,7 @@ public class HomeController {
         }
 
         model.addAttribute("articles", articlesPerPage);
+        model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articlesPerPage));
         model.addAttribute("pageNum", pageNum);
         model.addAttribute("category", "index");
         model.addAttribute("allArticlesCount", searchedArticles.size());
@@ -170,6 +172,7 @@ public class HomeController {
         }
 
         model.addAttribute("articles", articles);
+        model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
         model.addAttribute("pageNum", 1);
         model.addAttribute("category", "fitness");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()).size());
@@ -196,6 +199,7 @@ public class HomeController {
         }
 
         model.addAttribute("articles", articlesPerPage);
+        model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articlesPerPage));
         model.addAttribute("pageNum", pageNum);
         model.addAttribute("category", "fitness");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()).size());
@@ -218,6 +222,7 @@ public class HomeController {
         }
 
         model.addAttribute("articles", articles);
+        model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
         model.addAttribute("pageNum", 1);
         model.addAttribute("category", "food");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("food")).collect(Collectors.toList()).size());
@@ -244,6 +249,7 @@ public class HomeController {
         }
 
         model.addAttribute("articles", articlesPerPage);
+        model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articlesPerPage));
         model.addAttribute("pageNum", pageNum);
         model.addAttribute("category", "food");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("food")).collect(Collectors.toList()).size());
@@ -266,6 +272,7 @@ public class HomeController {
         }
 
         model.addAttribute("articles", articles);
+        model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
         model.addAttribute("pageNum", 1);
         model.addAttribute("category", "lifestyle");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("lifestyle")).collect(Collectors.toList()).size());
@@ -292,6 +299,7 @@ public class HomeController {
         }
 
         model.addAttribute("articles", articlesPerPage);
+        model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articlesPerPage));
         model.addAttribute("pageNum", pageNum);
         model.addAttribute("category", "lifestyle");
         model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("lifestyle")).collect(Collectors.toList()).size());

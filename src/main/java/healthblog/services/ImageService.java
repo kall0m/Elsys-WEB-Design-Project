@@ -9,7 +9,7 @@ public interface ImageService {
 
     boolean imageExists(Integer id);
 
-    Image findImage(byte[] bytes);
+    Image findImage(String path);
 
     void deleteImage(Image image);
 
