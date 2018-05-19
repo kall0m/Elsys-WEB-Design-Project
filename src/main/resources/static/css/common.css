@@ -115,6 +115,11 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   background: #EAE6E5;
 }
 
+.parallelogram-image {
+  -webkit-clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+  clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+}
+
 /* HEADER */
 
 .page-header {
