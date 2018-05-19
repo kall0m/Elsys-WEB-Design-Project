@@ -2,6 +2,11 @@
     <div class="main-container clearfix">
         <div class="primary">
             <div class="article-holder">
+                <div class="article-buttons text-right">
+                    <a th:href="@{/article/edit/{id}(id=${article.id})}"><button class="btn fonts-bangers">Edit</button></a>
+                    <a th:href="@{/article/delete/{id}(id=${article.id})}"><button class="btn fonts-bangers">Delete</button></a>
+                </div>
+
                 <div class="article-body text-center">
                     <h4 class="article-info fonts-display">
                         <object><a th:href="@{/{category}(category=${article.category})}" th:text="${article.category}"></a></object>
@@ -38,6 +43,7 @@
                     <div class="article-image article-details">
                         <img th:src="@{'data:image/jpeg;base64,'+${articleImages[1]}}" alt=""/>
                     </div>
+                    <br/>
                     <div class="article-image article-details">
                         <img th:src="@{'data:image/jpeg;base64,'+${articleImages[2]}}" alt=""/>
                     </div>
