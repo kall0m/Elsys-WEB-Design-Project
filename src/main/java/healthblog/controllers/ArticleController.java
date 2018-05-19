@@ -2,9 +2,10 @@ package healthblog.controllers;
 
 import healthblog.models.Image;
 import healthblog.models.Tag;
-import healthblog.repositories.ImageRepository;
+import healthblog.services.ArticleService;
 import healthblog.services.ImageService;
 import healthblog.services.TagService;
+import healthblog.services.UserService;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,22 +19,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import healthblog.bindingModels.ArticleBindingModel;
 import healthblog.models.Article;
 import healthblog.models.User;
-import healthblog.repositories.ArticleRepository;
-import healthblog.repositories.UserRepository;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
 @Controller
 public class ArticleController {
-    private final ArticleRepository articleRepository;
-
-    private final UserRepository userRepository;
-
-    private final ImageRepository imageRepository;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private TagService tagService;
@@ -41,7 +38,52 @@ public class ArticleController {
     @Autowired
     private ImageService imageService;
 
-    private static List<Article> subListArticles(List<Article> articles) {
+    @Autowired
+    private ArticleService articleService;
+
+    private void addTagsToArticle(String[] tagsNames, Article article) {
+        for (String tagName : tagsNames) {
+            Tag tag = this.tagService.findTag(tagName);
+
+            if(tag == null) {
+                tag = new Tag(tagName);
+
+                this.tagService.saveTag(tag);
+            }
+
+            article.addTag(tag);
+        }
+    }
+
+    private void saveImagesAndSetToArticle(List<MultipartFile> images, Article article) throws IOException {
+        for(MultipartFile imageFile : images) {
+            byte[] imageBytes = imageFile.getBytes();
+
+            String imageNumber = String.valueOf(images.indexOf(imageFile) + 1);
+
+            String extension = imageFile.getOriginalFilename().substring(imageFile.getOriginalFilename().lastIndexOf(".") + 1);
+
+            Path imagePath = Paths.get("articles-images/" + article.getId() + "_" + imageNumber + "." + extension);
+
+            try {
+                Files.write(imagePath, imageBytes);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Image image = this.imageService.findImage(imagePath.toString());
+
+            if(image == null) {
+                image = new Image(imagePath.toString(), article);
+
+                this.imageService.saveImage(image);
+            }
+
+            article.addImage(image);
+        }
+    }
+
+    public static List<Article> subListArticles(List<Article> articles) {
         int articlesFromIndex = 0;
         int articlesToIndex = 10;
 
@@ -59,11 +101,18 @@ public class ArticleController {
         return subListedArticles;
     }
 
-    @Autowired
-    public ArticleController(ArticleRepository articleRepository, UserRepository userRepository, ImageRepository imageRepository) {
-        this.articleRepository = articleRepository;
-        this.userRepository = userRepository;
-        this.imageRepository = imageRepository;
+    public static List<String> getArticlesFirstImages(List<Article> articles) {
+        List<String> base64images = new ArrayList<>();
+
+        for(Article article : articles) {
+            try {
+                base64images.add(Base64.encodeBase64String(Files.readAllBytes(Paths.get(article.getImages().get(0).getPath()))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return base64images;
     }
 
     @GetMapping("/article/create")
@@ -79,7 +128,7 @@ public class ArticleController {
     public String createProcess(ArticleBindingModel articleBindingModel) throws IOException {
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        User userEntity = this.userRepository.findByEmail(user.getUsername());
+        User userEntity = this.userService.findByEmail(user.getUsername());
 
         Article article = new Article(
                 articleBindingModel.getCategory().toLowerCase(),
@@ -90,71 +139,27 @@ public class ArticleController {
         );
 
         if(!articleBindingModel.getTags().isEmpty()) {
-            for (String tagName : articleBindingModel.getTags().trim().split("\\s*,\\s*")) {
-                Tag tag = this.tagService.findTag(tagName);
-
-                if(tag == null) {
-                    tag = new Tag(tagName);
-
-                    this.tagService.saveTag(tag);
-                }
-
-                article.addTag(tag);
-            }
+            addTagsToArticle(articleBindingModel.getTags().trim().split("\\s*,\\s*"), article);
         }
 
-        article.setImage(articleBindingModel.getImage());
+        this.articleService.saveArticle(article);
 
-        List<Image> imagesBytes = new ArrayList<>();
+        saveImagesAndSetToArticle(articleBindingModel.getImages(), article);
 
-        for(MultipartFile imageFile : articleBindingModel.getImages()) {
-            byte[] imageBytes = imageFile.getBytes();
+        this.articleService.saveArticle(article);
 
-            try {
-                Files.write(Paths.get("retrieve-dir/" + "img_original" + "." + "JPG"), imageBytes);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            byte[] decodedImage = Base64.decodeBase64(imageBytes);
-
-            try {
-                Files.write(Paths.get("retrieve-dir/" + "img_decoded" + "." + "JPG"), decodedImage);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            String base64 = Base64.encodeBase64URLSafeString(imageBytes);
-
-            Image image = imageRepository.findByBase64(base64);
-
-            if(image == null) {
-                image = new Image(imageBytes);
-
-                image.setBase64(Base64.encodeBase64String(imageBytes));
-
-                this.imageService.saveImage(image);
-            }
-
-            imagesBytes.add(image);
-        }
-
-        article.setImages(imagesBytes);
-
-        this.articleRepository.saveAndFlush(article);
-
-        return "redirect:/";
+        return "redirect:/article/" + article.getId();
     }
 
     @GetMapping("article/{id}")
     public String details(Model model, @PathVariable Integer id) {
-        Article article = this.articleRepository.findOne(id);
+        Article article = this.articleService.findArticle(id);
 
         if (article == null) return "redirect:/";
 
         List<Article> similar = new ArrayList<>();
 
-        List<Article> articles = this.articleRepository.findAll();
+        List<Article> articles = this.articleService.getAllArticles();
 
         int count = 0;
 
@@ -177,8 +182,20 @@ public class ArticleController {
             }
         }
 
+        List<String> base64images = new ArrayList<>();
+
+        for(Image image : article.getImages()) {
+            try {
+                base64images.add(Base64.encodeBase64String(Files.readAllBytes(Paths.get(image.getPath()))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         model.addAttribute("article", article);
+        model.addAttribute("articleImages", base64images);
         model.addAttribute("similarArticles", subListArticles(similar));
+        model.addAttribute("similarArticlesImages", getArticlesFirstImages(similar));
         model.addAttribute("view", "article/details");
 
         return "base-layout";
@@ -187,11 +204,23 @@ public class ArticleController {
     @GetMapping("article/edit/{id}")
     @PreAuthorize("isAuthenticated()")
     public String edit(Model model, @PathVariable Integer id) {
-        Article article = this.articleRepository.findOne(id);
+        Article article = this.articleService.findArticle(id);
 
         if (article == null) return "redirect:/";
 
+        StringBuilder tagsNames = new StringBuilder();
+
+        for(Tag tag : article.getTags()) {
+            tagsNames.append(tag.getName());
+            if(article.getTags().size() > 1 && !tag.equals(article.getTags().get(article.getTags().size() - 1))) {
+                tagsNames.append(", ");
+            }
+        }
+
+        String articleTags = tagsNames.toString();
+
         model.addAttribute("article", article);
+        model.addAttribute("articleTags", articleTags);
         model.addAttribute("view", "article/edit");
 
         return "base-layout";
@@ -199,17 +228,34 @@ public class ArticleController {
 
     @PostMapping("article/edit/{id}")
     @PreAuthorize("isAuthenticated()")
-    public String editProcess(ArticleBindingModel articleBindingModel, @PathVariable Integer id) {
-        Article article = this.articleRepository.findOne(id);
+    public String editProcess(ArticleBindingModel articleBindingModel, @PathVariable Integer id) throws IOException {
+        Article article = this.articleService.findArticle(id);
 
         if (article == null) return "redirect:/";
 
-        article.setCategory(articleBindingModel.getCategory());
+        article.setCategory(articleBindingModel.getCategory().toLowerCase());
         article.setTitle(articleBindingModel.getTitle());
         article.setContent(articleBindingModel.getContent());
-        article.setImage(articleBindingModel.getImage());
 
-        this.articleRepository.saveAndFlush(article);
+        article.setTags(new ArrayList<>());
+
+        if(articleBindingModel.getTags() != null) {
+            addTagsToArticle(articleBindingModel.getTags().trim().split("\\s*,\\s*"), article);
+        }
+
+        if(!articleBindingModel.getImages().get(0).getOriginalFilename().equals("")) {
+            for(Image image : article.getImages()) {
+                Files.delete(Paths.get(image.getPath()));
+                image.setArticle(null);
+                this.imageService.deleteImage(image);
+            }
+
+            article.setImages(new ArrayList<>());
+
+            saveImagesAndSetToArticle(articleBindingModel.getImages(), article);
+        }
+
+        this.articleService.saveArticle(article);
 
         return "redirect:/article/" + article.getId();
     }
@@ -217,11 +263,20 @@ public class ArticleController {
     @GetMapping("article/delete/{id}")
     @PreAuthorize("isAuthenticated()")
     public String delete(Model model, @PathVariable Integer id) {
-        Article article = this.articleRepository.findOne(id);
+        Article article = this.articleService.findArticle(id);
 
         if(article == null) return "redirect:/";
 
+        String articleImageBase64 = "";
+
+        try {
+            articleImageBase64 = Base64.encodeBase64String(Files.readAllBytes(Paths.get(article.getImages().get(0).getPath())));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         model.addAttribute("article", article);
+        model.addAttribute("articleImage", articleImageBase64);
         model.addAttribute("view", "article/delete");
 
         return "base-layout";
@@ -230,11 +285,20 @@ public class ArticleController {
     @PostMapping("article/delete/{id}")
     @PreAuthorize("isAuthenticated()")
     public String deleteProcess(Model model, @PathVariable Integer id){
-        Article article = this.articleRepository.findOne(id);
+        Article article = this.articleService.findArticle(id);
 
         if(article == null) return "redirect:/";
 
-        this.articleRepository.delete(article);
+        for(Tag tag : article.getTags()) {
+            tag.getArticles().remove(article);
+        }
+
+        for(Image image : article.getImages()) {
+            image.setArticle(null);
+            this.imageService.deleteImage(image);
+        }
+
+        this.articleService.deleteArticle(article);
 
         return "redirect:/";
     }
