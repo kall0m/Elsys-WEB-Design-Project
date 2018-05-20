@@ -37,6 +37,8 @@
     padding: 1.625em;
     position: relative;
     overflow: hidden;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .article-image > img {
@@ -65,8 +67,13 @@
     margin: 2% auto;
 }
 
+.similar-articles-images {
+    width: 40%;
+    margin: 0 auto;
+}
+
 .similar-articles-images img {
-    width: 300px;
+    width: 100%;
     height: auto;
 }
 

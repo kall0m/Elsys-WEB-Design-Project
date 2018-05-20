@@ -304,7 +304,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 .page-section:last-of-type {
   /*border-bottom: 1px solid;*/
-  padding: 0;
+  /*padding: 0;*/
 }
 
 .post-section {
@@ -315,6 +315,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   position: relative;
   text-align: center;
   z-index: 0;
+  padding: 0;
 }
 
 .main-title {
@@ -498,7 +499,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 .page-footer {
   display: block;
-  border-top: 1px solid;
+  /*border-top: 1px solid;*/
   padding-top: 5%;
 }
 
@@ -648,9 +649,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   .main-container {
     width: 90%;
   }
-  .page-section {
-    margin-top: 50px;
-  }
   .page-section-pc {
     display: none !important;
   }
@@ -674,6 +672,12 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   }
   #form-horizontal {
     width: 100%;
+  }
+  .article-image {
+    width: 100% !important;
+  }
+  .similar-articles-images {
+    width: 100% !important;
   }
 
   /* ABOUT */

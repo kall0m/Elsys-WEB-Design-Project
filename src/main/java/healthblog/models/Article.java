@@ -107,8 +107,8 @@ public class Article {
         this.images.add(image);
     }
 
-    @Column(columnDefinition = "DATETIME", nullable = false)
-    //@Column(insertable = false, updatable = false) //postgresql
+    //@Column(columnDefinition = "DATETIME", nullable = false)
+    @Column(insertable = false, updatable = false) //postgresql
     @Temporal(TemporalType.TIMESTAMP) //postgresql
     public Date getDate() {
         return date;
