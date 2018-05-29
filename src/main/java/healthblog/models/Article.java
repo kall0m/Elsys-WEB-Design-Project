@@ -2,6 +2,7 @@ package healthblog.models;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -108,8 +109,9 @@ public class Article {
     }
 
     //@Column(columnDefinition = "DATETIME", nullable = false)
-    @Column(insertable = false, updatable = false) //postgresql
-    @Temporal(TemporalType.TIMESTAMP) //postgresql
+    @Column(insertable = false, updatable = false, columnDefinition = "timestamptz") //postgresql
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     public Date getDate() {
         return date;
     }
