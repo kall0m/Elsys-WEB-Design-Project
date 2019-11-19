@@ -126,7 +126,7 @@ public class Article {
     }
 
     //@Column(columnDefinition = "DATETIME", nullable = false)
-    @Column(insertable = true, updatable = true, columnDefinition = "timestamptz") //postgresql
+    @Column(columnDefinition = "timestamptz") //postgresql
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     public Date getDate() {
