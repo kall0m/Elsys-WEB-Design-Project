@@ -2,31 +2,36 @@
     <div class="main-container">
         <div class="page-section">
             <form id="form-horizontal" th:action="@{/article/create}" method="post" enctype="multipart/form-data">
-                <p class="">
+                <p class="form-field">
                     <label for="title">Title</label>
                     <input type="text" id="title" placeholder="Title" name="title" value="" size="200" required="required" aria-invalid="false"/>
                 </p>
 
-                <p class="">
+                <p class="form-field">
                     <label for="content">Content</label>
                     <textarea id="content" name="content" cols="45" rows="8" maxlength="65525" required="required"></textarea>
                 </p>
 
-                <p>
+                <p class="form-field">
                     <label for="category">Category</label>
                     <select id="category" name="category" required="required">
-                        <option value="fitness">Fitness</option>
+                        <option value="design">Design</option>
                         <option value="food">Food</option>
                         <option value="lifestyle">Lifestyle</option>
                     </select>
                 </p>
 
-                <p class="">
+                <p class="form-field">
                     <label for="images">Image Files</label>
                     <input type="file" id="images" name="images" multiple="multiple"/>
                 </p>
 
-                <p class="">
+                <p class="form-field">
+                    <label for="documents">Document Files (PDF only)</label>
+                    <input type="file" id="documents" name="documents" multiple="multiple"/>
+                </p>
+
+                <p class="form-field">
                     <label for="tags">Tags</label>
                     <input type="text" id="tags" placeholder="Tags" name="tags" value="" size="200" required="required" aria-invalid="false"/>
                 </p>
