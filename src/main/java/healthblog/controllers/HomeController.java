@@ -24,7 +24,7 @@ public class HomeController {
     @Autowired
     private TagService tagService;
 
-    private static final int ARTICLES_PER_PAGE_COUNT = 8;
+    private static final int ARTICLES_PER_PAGE_COUNT = 4;
 
     private static List<Article> pageArticles(Integer pageNum, List<Article> articles) {
         int articlesFromIndex = ARTICLES_PER_PAGE_COUNT * (pageNum - 1);
@@ -190,9 +190,9 @@ public class HomeController {
 
         model.addAttribute("articles", articles);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
-        model.addAttribute("pageNum", 1);
+        model.addAttribute("pageNum", -1);
         model.addAttribute("category", "index");
-        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()).size());
+        model.addAttribute("allArticlesCount", 0);
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
         model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
@@ -200,12 +200,12 @@ public class HomeController {
         return "base-layout";
     }
 
-    @GetMapping("/fitness")
-    public String fitness(Model model) {
+    @GetMapping("/design")
+    public String design(Model model) {
         List<Article> articles = new ArrayList<>();
 
         try {
-            articles = pageArticles(1, this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()));
+            articles = pageArticles(1, this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("design")).collect(Collectors.toList()));
         } catch (IllegalArgumentException exception) {
             model.addAttribute("view", "error/page-not-found");
 
@@ -215,8 +215,8 @@ public class HomeController {
         model.addAttribute("articles", articles);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
         model.addAttribute("pageNum", 1);
-        model.addAttribute("category", "fitness");
-        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()).size());
+        model.addAttribute("category", "design");
+        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("design")).collect(Collectors.toList()).size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
         model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
@@ -224,16 +224,16 @@ public class HomeController {
         return "base-layout";
     }
 
-    @GetMapping("/fitness/page/{pageNum}")
-    public String fitnessPaging(Model model, @PathVariable Integer pageNum) {
+    @GetMapping("/design/page/{pageNum}")
+    public String designPaging(Model model, @PathVariable Integer pageNum) {
         if(pageNum <= 1) {
-            return "redirect:/fitness";
+            return "redirect:/design";
         }
 
         List<Article> articlesPerPage = new ArrayList<>();
 
         try {
-            articlesPerPage = pageArticles(pageNum, this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()));
+            articlesPerPage = pageArticles(pageNum, this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("design")).collect(Collectors.toList()));
         } catch (IllegalArgumentException exception) {
             model.addAttribute("view", "error/page-not-found");
 
@@ -243,8 +243,8 @@ public class HomeController {
         model.addAttribute("articles", articlesPerPage);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articlesPerPage));
         model.addAttribute("pageNum", pageNum);
-        model.addAttribute("category", "fitness");
-        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("fitness")).collect(Collectors.toList()).size());
+        model.addAttribute("category", "design");
+        model.addAttribute("allArticlesCount", this.articleService.getAllArticles().stream().filter(a -> a.getCategory().equals("design")).collect(Collectors.toList()).size());
         model.addAttribute("articlesPerPageCount", ARTICLES_PER_PAGE_COUNT);
         model.addAttribute("popularTags", getPopularTags());
         model.addAttribute("view", "home/articles");
