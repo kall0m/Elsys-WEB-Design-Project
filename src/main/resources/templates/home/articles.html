@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="article-image article-image-home">
-                                <p th:text="${articlesImages[i.index]}"></p>
+                                <img class="parallelogram-image" th:src="@{'data:image/jpeg;base64,'+${articlesImages[i.index]}}" alt=""/>
                             </div>
                         </div>
                     </a>
