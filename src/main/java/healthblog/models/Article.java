@@ -24,6 +24,8 @@ public class Article {
 
     private List<Image> images;
 
+    private List<Document> documents;
+
     private Date date = new Date();
 
     private List<Tag> tags;
@@ -38,6 +40,7 @@ public class Article {
         this.date = date;
         this.tags = new ArrayList<>();
         this.images = new ArrayList<>();
+        this.documents = new ArrayList<>();
     }
 
     @Id
@@ -108,6 +111,20 @@ public class Article {
         this.images.add(image);
     }
 
+    @OneToMany(mappedBy = "article")
+    @Fetch(value = FetchMode.SUBSELECT)
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
+    }
+
+    public void addDocument(Document document) {
+        this.documents.add(document);
+    }
+
     //@Column(columnDefinition = "DATETIME", nullable = false)
     @Column(insertable = false, updatable = false, columnDefinition = "timestamptz") //postgresql
     @Temporal(TemporalType.TIMESTAMP)
@@ -147,6 +164,7 @@ public class Article {
         if (content != null ? !content.equals(article.content) : article.content != null) return false;
         if (author != null ? !author.equals(article.author) : article.author != null) return false;
         if (images != null ? !images.equals(article.images) : article.images != null) return false;
+        if (documents != null ? !documents.equals(article.documents) : article.documents != null) return false;
         if (date != null ? !date.equals(article.date) : article.date != null) return false;
         return tags != null ? tags.equals(article.tags) : article.tags == null;
     }
@@ -159,6 +177,7 @@ public class Article {
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (author != null ? author.hashCode() : 0);
         result = 31 * result + (images != null ? images.hashCode() : 0);
+        result = 31 * result + (documents != null ? documents.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (tags != null ? tags.hashCode() : 0);
         return result;
