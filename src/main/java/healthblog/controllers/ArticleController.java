@@ -1,11 +1,7 @@
 package healthblog.controllers;
 
-import healthblog.models.Image;
-import healthblog.models.Tag;
-import healthblog.services.ArticleService;
-import healthblog.services.ImageService;
-import healthblog.services.TagService;
-import healthblog.services.UserService;
+import healthblog.models.*;
+import healthblog.services.*;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import healthblog.bindingModels.ArticleBindingModel;
-import healthblog.models.Article;
-import healthblog.models.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -39,6 +33,9 @@ public class ArticleController {
     private ImageService imageService;
 
     @Autowired
+    private DocumentService documentService;
+
+    @Autowired
     private ArticleService articleService;
 
     private void addTagsToArticle(String[] tagsNames, Article article) {
@@ -55,21 +52,31 @@ public class ArticleController {
         }
     }
 
+    private void saveFile(Path path, MultipartFile file) throws IOException {
+        byte[] bytes = file.getBytes();
+
+        try {
+            Files.write(path, bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String constructFileName(String directory, int articleId, MultipartFile file, List<MultipartFile> files) {
+        String fileNumber = String.valueOf(files.indexOf(file) + 1);
+
+        String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
+
+        return directory + articleId + "_" + fileNumber + "." + extension;
+    }
+
     private void saveImagesAndSetToArticle(List<MultipartFile> images, Article article) throws IOException {
         for(MultipartFile imageFile : images) {
-            byte[] imageBytes = imageFile.getBytes();
+            String fileName = constructFileName(Image.IMAGES_DIR, article.getId(), imageFile, images);
 
-            String imageNumber = String.valueOf(images.indexOf(imageFile) + 1);
+            Path imagePath = Paths.get(fileName);
 
-            String extension = imageFile.getOriginalFilename().substring(imageFile.getOriginalFilename().lastIndexOf(".") + 1);
-
-            Path imagePath = Paths.get("articles-images/" + article.getId() + "_" + imageNumber + "." + extension);
-
-            try {
-                Files.write(imagePath, imageBytes);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            saveFile(imagePath, imageFile);
 
             Image image = this.imageService.findImage(imagePath.toString());
 
@@ -80,6 +87,26 @@ public class ArticleController {
             }
 
             article.addImage(image);
+        }
+    }
+
+    private void saveDocumentsAndSetToArticle(List<MultipartFile> documents, Article article) throws IOException {
+        for(MultipartFile documentFile : documents) {
+            String fileName = constructFileName(Document.DOCUMENTS_DIR, article.getId(), documentFile, documents);
+
+            Path documentPath = Paths.get(fileName);
+
+            saveFile(documentPath, documentFile);
+
+            Document document = this.documentService.findDocument(documentPath.toString());
+
+            if(document == null) {
+                document = new Document(documentPath.toString(), article);
+
+                this.documentService.saveDocument(document);
+            }
+
+            article.addDocument(document);
         }
     }
 
@@ -126,6 +153,14 @@ public class ArticleController {
     @PostMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
     public String createProcess(ArticleBindingModel articleBindingModel) throws IOException {
+        for (MultipartFile file : articleBindingModel.getDocuments()) {
+            String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
+
+            if (!"pdf".equals(extension)) {
+                return "redirect:/article/create";
+            }
+        }
+
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User userEntity = this.userService.findByEmail(user.getUsername());
@@ -145,6 +180,7 @@ public class ArticleController {
         this.articleService.saveArticle(article);
 
         saveImagesAndSetToArticle(articleBindingModel.getImages(), article);
+        saveDocumentsAndSetToArticle(articleBindingModel.getDocuments(), article);
 
         this.articleService.saveArticle(article);
 
@@ -192,8 +228,19 @@ public class ArticleController {
             }
         }
 
+        List<String> base64documents = new ArrayList<>();
+
+        for(Document document : article.getDocuments()) {
+            try {
+                base64documents.add(Base64.encodeBase64String(Files.readAllBytes(Paths.get(document.getPath()))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         model.addAttribute("article", article);
         model.addAttribute("articleImages", base64images);
+        model.addAttribute("articleDocuments", base64documents);
         model.addAttribute("similarArticles", subListArticles(similar));
         model.addAttribute("similarArticlesImages", getArticlesFirstImages(similar));
         model.addAttribute("view", "article/details");
@@ -253,6 +300,7 @@ public class ArticleController {
             article.setImages(new ArrayList<>());
 
             saveImagesAndSetToArticle(articleBindingModel.getImages(), article);
+            saveDocumentsAndSetToArticle(articleBindingModel.getDocuments(), article);
         }
 
         this.articleService.saveArticle(article);

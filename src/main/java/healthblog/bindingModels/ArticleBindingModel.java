@@ -18,6 +18,8 @@ public class ArticleBindingModel {
 
     private List<MultipartFile> images;
 
+    private List<MultipartFile> documents;
+
     private String tags;
 
     public String getCategory() {
@@ -58,6 +60,14 @@ public class ArticleBindingModel {
 
     public void setImages(List<MultipartFile> images) {
         this.images = images;
+    }
+
+    public List<MultipartFile> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<MultipartFile> documents) {
+        this.documents = documents;
     }
 }
 
