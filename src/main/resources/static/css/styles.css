@@ -516,7 +516,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 /* ABOUT */
 
 #about-page-image {
-  background: url(../img/about-image.jpeg);
+  background: url(../img/about-image.jpg);
   background-position: 50%;
   background-size: cover;
   height: 500px;
