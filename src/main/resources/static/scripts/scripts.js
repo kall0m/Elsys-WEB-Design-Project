@@ -27,17 +27,3 @@ function checker(){
 
     return flag;
 }
-
-function initMap() {
-    var kostinbrod = {lat: 42.818459, lng: 23.211960};
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        center: kostinbrod
-    });
-
-    var marker = new google.maps.Marker({
-        position: kostinbrod,
-        map: map
-    });
-}
