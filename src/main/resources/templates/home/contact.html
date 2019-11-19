@@ -1,40 +1,47 @@
 <main th:remove="tag">
     <div class="main-container text-center">
         <div class="page-section">
-            <div class="contact-page-image parallelogram-image"></div>
+            <div id="contact-page-image" class="parallelogram-image"></div>
+            <h3 class="fonts-bangers">"Treat everyone you meet like God in drag."</h3>
+            <span class="fonts-bangers">- Ram Dass</span>
         </div>
 
-        <div class="page-section contact-section">
-            <h3 class="fonts-bangers">“Treat everyone you meet like God in drag.” -Ram Dass</h3>
+        <div class="page-section">
+            <h1 class="section-title fonts-bangers">Send me a message</h1>
             <p class="fonts-regular">Fill out this form and I’ll do my best to respond!</p>
 
             <div class="page-subsection contact-form">
                 <form method="post" th:action="@{/contact}">
                     <p class="contact-message">
-                        <textarea id="message" name="message" placeholder="Hi, Kaloyan! I am writing to you..." cols="45" rows="8" maxlength="65525" required="required"></textarea>
+                        <textarea id="message" name="message" placeholder="Hi, Kaloyan! I am writing to you..."
+                            cols="45" rows="8" maxlength="65525" required="required"></textarea>
                     </p>
 
                     <p class="contact-field">
-                        <input type="text" id="subject" placeholder="Subject" name="subject" size="30" maxlength="245"/>
+                        <input type="text" id="subject" placeholder="Subject" name="subject" size="30"
+                            maxlength="245" />
                     </p>
 
                     <p class="contact-field">
-                        <input type="text" id="firstName" placeholder="First Name" name="firstName" size="30" maxlength="245"/>
+                        <input type="text" id="firstName" placeholder="First Name" name="firstName" size="30"
+                            maxlength="245" />
                     </p>
 
                     <p class="contact-field">
-                        <input type="email" id="email" placeholder="Email" name="email" value="" size="30" maxlength="100" aria-describedby="email-notes"/>
+                        <input type="email" id="email" placeholder="Email" name="email" value="" size="30"
+                            maxlength="100" aria-describedby="email-notes" />
                     </p>
 
                     <p>
-                        <input name="submit" type="submit" id="submit" class="form-submit fonts-bangers" onClick="return checker();" value="Send"/>
+                        <input name="submit" type="submit" id="submit" class="form-submit fonts-bangers"
+                            onClick="return checker();" value="Send" />
                     </p>
                 </form>
             </div>
         </div>
 
-        <div class="page-section contact-section">
-            <h1 class="fonts-bangers">Prefer other methods?</h1>
+        <div class="page-section">
+            <h1 class="section-title fonts-bangers">Prefer other methods?</h1>
             <p class="fonts-regular">Contact me through my phone, email or location</p>
 
             <div class="page-subsection contact-form">
@@ -42,28 +49,38 @@
                     <h3 class="fonts-bangers">Social Media</h3>
                     <ul class="social-list">
                         <li>
-                            <a target="_blank" href="https://www.facebook.com/kaloyan.madjunov"><img th:src="@{/img/facebook.png}"/></a>
+                            <a target="_blank" href="https://www.facebook.com/kaloyan.madzhunov"><img
+                                    th:src="@{/img/facebook.png}" /></a>
                         </li>
                         <li>
-                            <a target="_blank" href="https://www.instagram.com/kaloyanmad/"><img th:src="@{/img/instagram.png}"/></a>
+                            <a target="_blank" href="https://www.instagram.com/kaloyanmad/"><img
+                                    th:src="@{/img/instagram.png}" /></a>
                         </li>
                         <li>
-                            <a target="_blank" href="https://www.pinterest.com/apple_banana/"><img th:src="@{/img/pinterest.png}"/></a>
+                            <a target="_blank" href="https://www.pinterest.com/apple_banana/"><img
+                                    th:src="@{/img/pinterest.png}" /></a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="contact-widget contact-email">
                     <h3 class="fonts-bangers">Email</h3>
-                    <a href="mailto:k.madjunov@gmail.com"><p>k.madjunov@gmail.com</p></a>
+                    <a href="mailto:k.madjunov@gmail.com">
+                        <p>k.madjunov@gmail.com</p>
+                    </a>
                 </div>
 
                 <div class="contact-widget contact-map">
                     <h3 class="fonts-bangers">Location</h3>
-                    <div id="map"></div>
-                    <script async="async" defer="defer"
-                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp1KxJT15zpkEjd8zqRj7pnr-A4e2ja2g&amp;callback=initMap">
-                    </script>
+
+                    <div class="map">
+                        <div class="gmap_canvas">
+                            <iframe width="100%" height="400" id="gmap_canvas"
+                                src="https://maps.google.com/maps?q=Johannes%20van%20der%20Waalsweg%2058%2C%20Eindhoven&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                            </iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
