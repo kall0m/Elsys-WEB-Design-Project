@@ -32,7 +32,7 @@
                     <img class="parallelogram-image" th:src="@{'data:image/jpeg;base64,'+${articleImages[0]}}" alt=""/>
                 </div>
 
-                <div class="article-content">
+                <div class="article-content text-justify">
                     <p th:text="${article.content}"></p>
                 </div>
 
@@ -55,16 +55,29 @@
                 <th:block th:if="${article.documents.size()} > 0">
                     <th:block th:each="document, i : ${articleDocuments}">
                         <div class="article-document-holder">
-                            <object class="article-document" th:data="@{'data:application/pdf;base64,'+${document}}"></object>
-                            
+                            <iframe class="article-document" th:src="@{'data:application/pdf;base64,'+${document}}" allowfullscreen="true"></iframe>
                         </div>
                     </th:block>
                 </th:block>
             </div>
+        </div>
 
+        <th:block th:if="${articleTags.size()} > 0">
+            <div class="page-section">
+                <div class="popular-tags">
+                    <th:block th:each="tag : ${articleTags}">
+                        <a th:href="@{/{tag}(tag=${tag})}">
+                            <p class="fonts-bangers" th:text="${tag}"></p>
+                        </a>
+                    </th:block>
+                </div>
+            </div>
+        </th:block>
+
+        <th:block th:if="${similarArticles.size()} > 0">
             <div class="page-section post-section">
                 <h1 class="fonts-bangers">You may also like:</h1>
-
+    
                 <ul class="page-subsection">
                     <li class="article-holder" th:each="article, i : ${similarArticles}">
                         <a th:href="@{/article/{id}(id=${article.id})}">
@@ -73,10 +86,10 @@
                                     <h4 class="article-info fonts-regular">
                                         <object><a th:href="@{/{category}(category=${article.category})}" th:text="${article.category}"></a></object>
                                     </h4>
-
+    
                                     <h3 class="fonts-bangers" th:text="${article.title}"></h3>
                                 </div>
-
+    
                                 <div class="similar-articles-images">
                                     <img class="similar-articles-images parallelogram-image" th:src="@{'data:image/jpeg;base64,'+${similarArticlesImages[i.index]}}" alt=""/>
                                 </div>
@@ -85,6 +98,6 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </th:block>
     </div>
 </main>
