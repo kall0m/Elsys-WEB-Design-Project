@@ -57,8 +57,8 @@
 
         <div class="pager">
             <div class="fonts-bangers">
-                <th:block th:if="${pageNum} > 0">
-                    <th:block th:if="(${pageNum}) * ${articlesPerPageCount} &gt;= ${allArticlesCount}">
+                <th:block th:if="${allArticlesCount} &gt; ${articlesPerPageCount}">
+                    <th:block th:if="(${pageNum}) * ${articlesPerPageCount} &gt; ${allArticlesCount}">
                         <div class="pager-next">
                             <th:block th:if="${category} == 'index'">
                                 <a th:href="@{/page/{pageNum}(pageNum=${pageNum} - 1)}" data-wpel-link="internal">Newer posts</a>
@@ -69,7 +69,7 @@
                             <div class="meta-line"></div>
                         </div>
                     </th:block>
-                    <th:block th:unless="(${pageNum}) * ${articlesPerPageCount} &gt;= ${allArticlesCount}">
+                    <th:block th:unless="(${pageNum}) * ${articlesPerPageCount} &gt; ${allArticlesCount}">
                         <th:block th:if="${pageNum} == 1">
                             <div class="pager-previous">
                                 <th:block th:if="${category} == 'index'">
