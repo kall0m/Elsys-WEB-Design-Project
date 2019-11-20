@@ -20,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class ArticleController {
@@ -241,6 +242,7 @@ public class ArticleController {
         model.addAttribute("article", article);
         model.addAttribute("articleImages", base64images);
         model.addAttribute("articleDocuments", base64documents);
+        model.addAttribute("articleTags", article.getTags().stream().map(Tag::getName).collect(Collectors.toList()));
         model.addAttribute("similarArticles", subListArticles(similar));
         model.addAttribute("similarArticlesImages", getArticlesFirstImages(similar));
         model.addAttribute("view", "article/details");
