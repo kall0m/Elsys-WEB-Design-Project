@@ -51,7 +51,9 @@ public class HomeController {
 
         for(String k : keywords) {
             for(Article a : articles) {
-                if (a.getTitle().toLowerCase().contains(k.toLowerCase()) || a.getContent().toLowerCase().contains(k.toLowerCase())) {
+                if (a.getTitle().toLowerCase().contains(k.toLowerCase()) ||
+                        a.getTags().stream().map(Tag::getName).collect(Collectors.toList()).toString()
+                                .toLowerCase().contains(k.toLowerCase())) {
                     searchedArticles.add(a);
                 }
             }
@@ -87,7 +89,7 @@ public class HomeController {
         }
 
         if(s != null) {
-            if(s.length() < 3) {
+            if(s.length() == 1) {
                 model.addAttribute("view", "error/search-not-found");
 
                 return "base-layout";
@@ -135,7 +137,7 @@ public class HomeController {
         List<Article> searchedArticles = this.articleService.getAllArticles();
 
         if(s != null) {
-            if(s.length() < 3) {
+            if(s.length() == 1) {
                 model.addAttribute("view", "error/search-not-found");
 
                 return "base-layout";
