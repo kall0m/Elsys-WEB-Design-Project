@@ -111,9 +111,13 @@ public class HomeController {
                 return "base-layout";
             }
 
+            Collections.reverse(searchedArticles);
+
             model.addAttribute("articles", searchedArticles);
             model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(searchedArticles));
         } else {
+            Collections.reverse(articles);
+
             model.addAttribute("articles", articles);
             model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
         }
@@ -164,6 +168,8 @@ public class HomeController {
             return "base-layout";
         }
 
+        Collections.reverse(articlesPerPage);
+
         model.addAttribute("articles", articlesPerPage);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articlesPerPage));
         model.addAttribute("pageNum", pageNum);
@@ -190,6 +196,8 @@ public class HomeController {
                 .filter(a -> a.getTags().contains(tag))
                 .collect(Collectors.toList());
 
+        Collections.reverse(articles);
+
         model.addAttribute("articles", articles);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
         model.addAttribute("pageNum", -1);
@@ -213,6 +221,8 @@ public class HomeController {
 
             return "base-layout";
         }
+
+        Collections.reverse(articles);
 
         model.addAttribute("articles", articles);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
@@ -242,6 +252,8 @@ public class HomeController {
             return "base-layout";
         }
 
+        Collections.reverse(articlesPerPage);
+
         model.addAttribute("articles", articlesPerPage);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articlesPerPage));
         model.addAttribute("pageNum", pageNum);
@@ -265,6 +277,8 @@ public class HomeController {
 
             return "base-layout";
         }
+
+        Collections.reverse(articles);
 
         model.addAttribute("articles", articles);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
@@ -294,6 +308,8 @@ public class HomeController {
             return "base-layout";
         }
 
+        Collections.reverse(articlesPerPage);
+
         model.addAttribute("articles", articlesPerPage);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articlesPerPage));
         model.addAttribute("pageNum", pageNum);
@@ -317,6 +333,8 @@ public class HomeController {
 
             return "base-layout";
         }
+
+        Collections.reverse(articles);
 
         model.addAttribute("articles", articles);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articles));
@@ -345,6 +363,8 @@ public class HomeController {
 
             return "base-layout";
         }
+
+        Collections.reverse(articlesPerPage);
 
         model.addAttribute("articles", articlesPerPage);
         model.addAttribute("articlesImages", ArticleController.getArticlesFirstImages(articlesPerPage));
