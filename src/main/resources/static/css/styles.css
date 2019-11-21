@@ -345,8 +345,8 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 .article-document-mobile {
   display: none !important;
-  width: 100%;
-  height: 500px;
+  text-decoration: underline;
+  font-size: 24px;
 }
 
 .article-buttons {
@@ -808,8 +808,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
     display: none !important;
   }
   .article-document-mobile {
-    display: inline !important;
-    text-decoration: underline;
+    display: block !important;
   }
   /* ABOUT */
   #about-page-image {
