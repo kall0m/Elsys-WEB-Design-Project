@@ -1,8 +1,19 @@
+/* GENERAL ELEMENTS STYLES */
+
 * {
+  /* box-sizing specifies how the width and the height of the element are calculated.
+  It affects the height and width properties. */
+  /* border-box tells the browser to account for any border and padding 
+  in the values spicified for an element's width and height. 
+  If an element's width is 100 pixels, that 100 pixels will include any border or padding added, 
+  and the content box will shrink to absorb that extra width. */
+  /* Every browser is backed by a rendering engine to draw the HTML/CSS web page. */
   -webkit-box-sizing: border-box;
-  /*Search, also :before and :after*/
+  /* For Safari and Chrome */
   -moz-box-sizing: border-box;
+  /* For Mozilla */
   box-sizing: border-box;
+  /* For Chrome, Internet Explorer and Opera */
 }
 
 body {
@@ -12,26 +23,25 @@ body {
   line-height: 1.8;
   font-weight: 300;
   font-family: "proxima-nova", sans-serif;
-  text-transform: none;
-  letter-spacing: 0;
   color: #12130F;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: #12130F;
-  font-weight: 600;
-  font-variant-ligatures: common-ligatures;
   margin-top: 0;
   margin-bottom: 0;
 }
 
 a {
   color: inherit;
+  /* inherit the color from the parent element in order to remove the default blue color*/
   text-decoration: none;
+  /* remove the underscore that is set by default */
 }
 
 ul {
   list-style-type: none;
+  /* specifies the type of list-item marker in a list */
 }
 
 input, textarea, button, select {
@@ -56,26 +66,41 @@ textarea {
   width: 100%;
 }
 
+/* Placeholders in forms */
+
+/* For Chrome, Firefox, Opera, Safari 10.1+ */
+
 ::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #12130F;
   opacity: 1;
-  /* Firefox */
 }
+
+/* For Internet Explorer 10-11 */
 
 :-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
   color: #12130F;
 }
 
+/* For Microsoft Edge */
+
 ::-ms-input-placeholder {
-  /* Microsoft Edge */
   color: #12130F;
 }
+
+/* Change appearance of buttons and buttons with types button, reset and submit */
 
 button, html input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
+}
+
+.btn {
+  margin-top: 1%;
+  padding: 8px;
+  background: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px !important;
 }
 
 .fonts-bangers {
@@ -92,38 +117,26 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   font-size: 12px;
 }
 
-.licorice-color {
-  color: #12130F !important;
-}
-
-.wintergreen-dream-color {
-  color: #5B9279 !important;
-}
-
-.eton-blue-color {
-  color: #8FCB9B !important;
-}
-
-.platinum-color {
-  color: #EAE6E5 !important;
-}
-
-.cinereous-color {
-  color: #8F8073 !important;
-}
-
-.wrap {
-  padding: 20px 0;
-}
-
-.page-border {
-  margin: 20px;
-  background: #EAE6E5;
-}
-
 .parallelogram-image {
+  /* Cut as a parallelogram */
   -webkit-clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
   clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
 }
 
 /* HEADER */
@@ -137,12 +150,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   background: none;
   overflow: hidden;
   padding: 10px 0;
-}
-
-#cover-image {
-  display: block;
-  width: 100% !important;
-  height: auto;
 }
 
 .logo {
@@ -202,7 +209,16 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   border-bottom: 1px solid;
 }
 
-/* MAIN */
+/* HOME PAGE */
+
+.wrap {
+  padding: 20px 0;
+}
+
+.page-border {
+  margin: 20px;
+  background: #EAE6E5;
+}
 
 .main-container {
   margin: 2.2em auto 5em;
@@ -211,40 +227,9 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   width: 1120px;
 }
 
-.text-center {
-  text-align: center;
-}
-
-.text-justify {
-  text-align: justify;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.float-left {
-  float: left;
-}
-
-.float-right {
-  float: right;
-}
-
-.btn {
-  margin-top: 1%;
-  padding: 8px;
-  background: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 24px;
-}
-
 /* PAGE SECTIONS */
+
+/* Page sections are divs that divide content on a page into sections */
 
 .page-section {
   padding-bottom: 5%;
@@ -261,7 +246,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 .page-subsection {
   position: relative;
-  z-index: 0;
   padding: 0;
 }
 
@@ -293,6 +277,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 }
 
 .article:hover {
+  /* Attaches one or more shadows to an element */
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.05);
 }
 
@@ -525,7 +510,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   margin: 4% auto 0;
 }
 
-/* Rotating head */
+/* Rotating head in About page */
 
 .image-holder {
   position: relative;
@@ -541,6 +526,12 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   width: 260px;
   height: 260px;
 }
+
+/* The z-index property specifies the stack order of an element */
+
+/* An element with greater stack order is always in front of an element with a lower stack order */
+
+/* z-index only works on positioned elements - the position is specified in .head-image */
 
 .head-image {
   z-index: 0;
@@ -656,6 +647,8 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 /* Clearfix */
 
+/* Elements after a floating element will flow around it. Using the "clearfix" hack will fix the problem. */
+
 .clearfix::after {
   content: ".";
   display: block;
@@ -666,7 +659,9 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   font-size: 0;
 }
 
-/* Media */
+/* RESPONSIVE SETTINGS */
+
+/* When the width of the screen becomes 1180px or less, apply the following: */
 
 @media screen and (max-width: 1180px) {
   /* HEADER */
@@ -700,6 +695,8 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   }
 }
 
+/* When the width of the screen becomes 1016px or less, apply the following: */
+
 @media screen and (max-width: 1016px) {
   /* HEADER */
   #nav p {
@@ -728,6 +725,8 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
     font-size: 20px;
   }
 }
+
+/* When the width of the screen becomes 898px or less, apply the following: */
 
 @media screen and (max-width: 898px) {
   /* HEADER */
