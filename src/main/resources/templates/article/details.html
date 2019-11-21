@@ -55,7 +55,8 @@
                 <th:block th:if="${article.documents.size()} > 0">
                     <th:block th:each="document, i : ${articleDocuments}">
                         <div class="article-document-holder">
-                            <iframe class="article-document" th:src="@{'data:application/pdf;base64,'+${document}}" allowfullscreen="true"></iframe>
+                            <iframe class="article-document article-document-pc" th:src="@{'data:application/pdf;base64,'+${document}}" allowfullscreen="true"></iframe>
+                            <a class="article-document-mobile" target="_blank" th:href="@{'data:application/pdf;base64,'+${document}}">View Assignment</a>
                         </div>
                     </th:block>
                 </th:block>
