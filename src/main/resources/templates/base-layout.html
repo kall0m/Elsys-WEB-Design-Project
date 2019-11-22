@@ -1,3 +1,20 @@
+<!-- This is the base skeleton html page which is used for every other html page. -->
+
+<!-- In the project I use the template engine Thymeleaf which allows me to display data from the back-end. -->
+
+<!-- Everyhere you see a html tag or text starting with th:, 
+    that means that Thymeleaf is used in order to retrieve and work with variables from the back-end. -->
+
+<!-- The tag <th:block></th:block> is not displayed when the html page is rendered.
+    It is used as an encapsulating block on which different programming code is executed.
+    For example iterating through a collection of items, conditions, etc. -->
+
+<!-- In this file, I dynamically include the head, header and footer which are separated files. -->
+<!-- In the main tag I dynamically include another html page by retrieving the name of the page from the back-end. -->
+<!-- The content of the html page to be included is encapsulated by a tag and the option 'th:remove="tag"''.
+    Using the functionality of Thymeleaf, the tag is removed when the html page is rendered.
+    When the page is included in base-layout, it will be encapsulated by the corresponding tag here. -->
+
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
