@@ -26,12 +26,14 @@ body {
   color: #12130F;
 }
 
+/* select and style each header tag */
 h1, h2, h3, h4, h5, h6 {
   color: #12130F;
   margin-top: 0;
   margin-bottom: 0;
 }
 
+/* select and style each anchor tag */
 a {
   color: inherit;
   /* inherit the color from the parent element in order to remove the default blue color*/
@@ -39,11 +41,13 @@ a {
   /* remove the underscore that is set by default */
 }
 
+/* select and style each unordered list tag */
 ul {
   list-style-type: none;
   /* specifies the type of list-item marker in a list */
 }
 
+/* select and style each input, textarea and button tags */
 input, textarea, button, select {
   color: #12130F;
   border: 1px solid #000;
@@ -51,14 +55,16 @@ input, textarea, button, select {
   text-align: left;
 }
 
+/* select and style each input element with a type on hover */
 button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, #form-horizontal input#submit:hover, .contact-form input#submit:hover {
   background: #12130F;
   color: #EAE6E5;
 }
 
+/* select and style each input element with a type */
 input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"], select {
   line-height: 1.8;
-  padding: 9px 10px;
+  padding: 9px 10px; /* means: padding-top: 9px; padding-right: 10px; padding-bottom: 9px; padding-left: 10px;*/
 }
 
 textarea {
@@ -66,7 +72,7 @@ textarea {
   width: 100%;
 }
 
-/* Placeholders in forms */
+/* Placeholders in forms (the text that appears when there is no input information in the input) */
 
 /* For Chrome, Firefox, Opera, Safari 10.1+ */
 
@@ -148,13 +154,13 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 #nav {
   background: none;
-  overflow: hidden;
+  overflow: hidden; /* the overflow of content is clipped, and the rest of the content will be invisible */
   padding: 10px 0;
 }
 
 .logo {
   max-width: 100%;
-  height: auto;
+  height: auto; /* automatically use the height of div regarding the height of the content */
 }
 
 .logo-mobile-br {
@@ -169,14 +175,16 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   display: none !important;
 }
 
+/* select and style every <p> element that is inside the element with id "nav" */
 #nav p {
   display: inline-block;
   vertical-align: middle;
-  margin: 0 10px;
+  margin: 0 10px; /* This translates to: margin-top: 0; margin-right: 10px; margin-bottom: 0; margin-left: 10px; */
   width: 120px;
   font-size: 12px;
 }
 
+/* select and style every <p> element with class "logo" that is inside the element with id "nav" */
 #nav p.logo {
   width: 200px;
   margin: 0;
@@ -190,10 +198,12 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   margin-right: 0 !important;
 }
 
+/* select and style every <img> element that is inside <a> elements that are inside the element with id "nav" */
 #nav a img {
   float: left;
 }
 
+/* select and style every <a> element that is inside the element with id "nav" */
 #nav a {
   padding-bottom: 5px;
   display: block;
@@ -221,7 +231,8 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 }
 
 .main-container {
-  margin: 2.2em auto 5em;
+  margin: 2.2em auto 5em; /* This translates to: margin-top: 2.2em; margin-right: auto; margin-bottom: 5em; margin-left: auto; */
+  /* The auto part I use to center the main-container div in the main */
   padding-left: 15px;
   padding-right: 15px;
   width: 1120px;
@@ -240,6 +251,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   display: none !important;
 }
 
+/* specify padding-top for the first element with class "page-section" of its parent */
 .page-section:first-of-type {
   padding-top: 5%;
 }
@@ -252,7 +264,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 .section-title {
   font-size: 58px;
   line-height: 1;
-  margin: 20px 0 20px;
+  margin: 20px 0;
 }
 
 .small-title {
@@ -261,6 +273,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 /* BLOG */
 
+/* select and style every <input> element that is inside elements with class "search-field" */
 .search-field input {
   width: 60%;
 }
@@ -304,7 +317,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 .article-image {
   position: relative;
   overflow: hidden;
-  margin: 0 auto;
+  margin: 0 auto; /* Again, here, combination of 0 and auto is used to center the div in the parent */
 }
 
 .article-image-home {
@@ -312,6 +325,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   padding-bottom: 1%;
 }
 
+/* select and style every <img> element where the parent has class "article-image" */
 .article-image>img {
   width: 100%;
   vertical-align: middle;
@@ -342,30 +356,34 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   margin: 0 10px 0 0;
 }
 
+/* select and style every <h3> and <h4> elements that are inside elements with class "similar-articles-descriptions" */
 .similar-articles-descriptions h3, h4 {
   width: 60%;
-  margin: 2% auto;
+  margin: 2% auto; /* centered div */
 }
 
 .similar-articles-images {
   width: 40%;
-  margin: 0 auto;
+  margin: 0 auto; /* centered div */
 }
 
+/* select and style every <img> element that is inside elements with class "similar-articles-images" */
 .similar-articles-images img {
   width: 100%;
-  height: auto;
+  height: auto; /* use the default height of the image */
 }
 
 .popular-tags {
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto; /* centered div */
 }
 
+/* select and style every <a> elements on hover that are inside elements with class "popular-tags" */
 .popular-tags a:hover {
   opacity: 0.8;
 }
 
+/* select and style every <p> element that is inside elements with class "popular-tags" */
 .popular-tags p {
   margin: 0 10px 10px 10px;
   padding: 0 10px;
@@ -399,7 +417,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 .meta-line {
   width: 50px;
   border-bottom: 1px solid;
-  margin: 0 auto;
+  margin: 0 auto; /* centered div */
 }
 
 .search-submit {
@@ -408,18 +426,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 .page-content {
   margin: 1.5em 0 0;
-}
-
-.social-list {
-  padding: 0;
-}
-
-.social-list li {
-  display: inline-block;
-}
-
-.social-list li:not(:last-child) {
-  margin-right: 1.625em;
 }
 
 /* FORMS */
@@ -499,6 +505,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   line-height: 1.4;
 }
 
+/* select and style every <p> element that is inside elements with class "about-intro" */
 .about-intro p {
   font-size: 22px;
   margin-bottom: 0;
@@ -514,11 +521,12 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 .image-holder {
   position: relative;
-  margin: 0 auto;
+  margin: 0 auto; /* centered div */
   width: 260px;
   height: 260px;
 }
 
+/* select and style all elements with class "head-image" and all elements with class "circle" */
 .head-image, .circle {
   position: absolute;
   top: 0;
@@ -557,6 +565,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   padding: 30px 50px;
 }
 
+/* select and style every <p> element that is inside elements with class "contact-form" */
 .contact-form p {
   font-size: 20px;
 }
@@ -569,6 +578,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   display: inline;
 }
 
+/* select and style every <input> element with the specified type that is inside elements with class "contact-form" */
 .contact-form input[type="email"], input[type="text"] {
   width: 32.7%;
   float: left;
@@ -576,12 +586,14 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   margin-bottom: 2%;
 }
 
+/* select and style every <input> element with type "email" that is inside elements with class "contact-form" */
 .contact-form input[type="email"] {
   width: 32%;
   float: right;
   margin-right: 0;
 }
 
+/* select and style every <textarea> element that is inside elements with class "contact-form" */
 .contact-form textarea {
   height: 200px;
   resize: none;
@@ -591,14 +603,17 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   margin: 5%;
 }
 
+/* specify margin for the first element with class "contact-widget" of its parent */
 .contact-widget:first-of-type {
   margin: 0;
 }
 
+/* specify margin for the last element with class "contact-widget" of its parent */
 .contact-widget:last-of-type {
   margin: 0;
 }
 
+/* select and style every <p> element that is inside elements with class "contact-widget" */
 .contact-widget p {
   margin: 0;
 }
@@ -629,6 +644,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   margin-bottom: 1%;
 }
 
+/* specify margin for the last element with class "footer-utility" of its parent */
 .footer-utility:last-of-type {
   margin: 0;
 }
@@ -645,9 +661,24 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   font-size: 12px;
 }
 
+.social-list {
+  padding: 0;
+}
+
+/* select and style every <li> element that is inside elements with class "social-list" */
+.social-list li {
+  display: inline-block;
+}
+
+/* specify margin-right for the <li> element that is the last child of its parent with class "social-list" */
+.social-list li:not(:last-child) {
+  margin-right: 1.625em;
+}
+
 /* Clearfix */
 
 /* Elements after a floating element will flow around it. Using the "clearfix" hack will fix the problem. */
+/* ::after - do something after the content of each element with class "clearfix" */
 
 .clearfix::after {
   content: ".";
@@ -661,10 +692,11 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 /* RESPONSIVE SETTINGS */
 
-/* When the width of the screen becomes 1180px or less, apply the following: */
+/* When the width of the screen becomes 1180px or less, select and style the following elements: */
 
 @media screen and (max-width: 1180px) {
   /* HEADER */
+  /* select and style every <p> element that is inside the element with id "nav" */
   #nav p {
     width: 108px;
   }
@@ -690,15 +722,17 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   .small-title {
     font-size: 40px;
   }
+  /* select and style every <p> element that is inside elements with class "about-intro" */
   .about-intro p {
     font-size: 22px;
   }
 }
 
-/* When the width of the screen becomes 1016px or less, apply the following: */
+/* When the width of the screen becomes 1016px or less, select and style the following elements: */
 
 @media screen and (max-width: 1016px) {
   /* HEADER */
+  /* select and style every <p> element that is inside the element with id "nav" */
   #nav p {
     width: 87px;
   }
@@ -721,32 +755,39 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   .small-title {
     font-size: 40px;
   }
+  /* select and style every <p> element that is inside elements with class "about-intro" */
   .about-intro p {
     font-size: 20px;
   }
 }
 
-/* When the width of the screen becomes 898px or less, apply the following: */
+/* When the width of the screen becomes 898px or less, select and style the following elements: */
 
 @media screen and (max-width: 898px) {
   /* HEADER */
+  /* select and style every <p> element that is inside the element with id "nav" */
+  /* select and style every <p> element with class "alpha" that is inside the element with id "nav" */
+  /* select and style every <p> element with class "omega" that is inside the element with id "nav" */
   #nav p, #nav p.alpha, #nav p.omega {
     margin: 0;
   }
+  /* select and style every <p> element that is inside the element with id "nav" */
   #nav p {
     width: auto;
     font-size: 18px;
     word-spacing: 1px;
     line-height: 32px;
   }
+  /* select and style every <a> element that is inside the element with id "nav" */
   #nav a {
     padding: 0 3px;
     border: none;
   }
   .nav-content {
     width: 320px;
-    margin: 0 auto;
+    margin: 0 auto; /* centered div */
   }
+  /* select and style every <p> element with class "logo" that is inside the element with id "nav" */
   #nav p.logo {
     margin-bottom: 15px;
     width: 160px;
@@ -763,6 +804,8 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   .underline {
     border: 0 !important;
   }
+  /* select and style every <p> element with class "text-left" that is inside the element with id "nav" */
+  /* select and style every <p> element with class "text-right" that is inside the element with id "nav" */
   #nav p.text-left, #nav p.text-right {
     text-align: center !important;
   }
@@ -776,21 +819,26 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   .page-section-mobile {
     display: block !important;
   }
+  /* select and style every <p> element where the parent has class "page-section" */
   .page-section>p {
     font-size: 14px;
   }
   .section-title {
     font-size: 38px;
   }
+  /* select and style every <p> element that is inside elements with class "about-intro" */
   .about-intro p {
     font-size: 20px;
   }
+  /* select and style every <a> element that is inside elements with class "pager" */
   .pager a {
     font-size: 26px;
   }
+  /* select and style every element with class "meta-line" that is inside elements with class "pager-next" */
   .pager-next .meta-line {
     display: none;
   }
+  /* select and style every element with class "meta-line" that is inside elements with class "pager-previous" */
   .pager-previous .meta-line {
     display: none;
   }
@@ -827,6 +875,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   .contact-field {
     display: block;
   }
+  /* select and style every <input> element that is inside elements with class "contact-field" */
   .contact-field input {
     float: none !important;
     width: 100% !important;
